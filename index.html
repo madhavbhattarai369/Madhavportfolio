@@ -355,15 +355,100 @@ nav.sc{background:rgba(5,6,13,.82);backdrop-filter:blur(22px);-webkit-backdrop-f
 .ct-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .copy-btn.ok{border-color:#34d399;color:#34d399}
 .socials{display:flex;gap:2rem;justify-content:center;margin-top:2.8rem;flex-wrap:wrap}
-.soc{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color var(--T)}
-.soc:hover{color:var(--gold)}
 footer{border-top:1px solid var(--cb);padding:2rem var(--pad);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
 footer p{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--dim)}
+
+
+/* ---------- value (CEO lens) ---------- */
+.vl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:3.2rem}
+.vl{position:relative;padding:1.8rem 1.6rem 1.7rem;border:1px solid var(--cb);border-radius:var(--r);background:linear-gradient(180deg,color-mix(in srgb,var(--c) 7%,var(--card)),var(--card));overflow:hidden;transition:border-color var(--T)}
+.vl:hover{border-color:color-mix(in srgb,var(--c) 45%,transparent)}
+.vl-ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 28%,transparent);margin-bottom:1.4rem}
+.vl-ic svg{width:30px;height:30px;overflow:visible}
+.vl h3{font-weight:700;font-size:1.2rem;letter-spacing:-.025em;line-height:1.25}
+.vl p{color:var(--mu);font-size:.93rem;line-height:1.55;margin-top:.45rem}
+.vl-draw{stroke-dasharray:50;stroke-dashoffset:50;transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .3s}
+.vis .vl-draw,.vl.vis .vl-draw{stroke-dashoffset:0}
+.vl-pulse{transform-origin:24px 24px;animation:vlPulse 2.4s ease-in-out infinite}
+.vl-spin{transform-origin:24px 20px;animation:vlSpin 6s cubic-bezier(.6,0,.4,1) infinite}
+.vl-bob{animation:bob 2.6s ease-in-out infinite}
+.pr{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem;padding-top:2.2rem}
+.pr-line{position:absolute;top:13px;left:14px;right:14px;height:1px;background:var(--cb2)}
+.pr-line i{position:absolute;inset:0;background:linear-gradient(90deg,var(--gd),var(--gl));transform:scaleX(0);transform-origin:left;transition:transform 2.2s cubic-bezier(.4,0,.2,1) .2s}
+.pr.vis .pr-line i{transform:scaleX(1)}
+.pr-step{position:relative}
+.pr-n{position:absolute;top:-2.2rem;left:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.62rem;color:var(--gold);background:var(--ink);border:1px solid rgba(210,177,94,.5);transition:all .5s}
+.pr.vis .pr-step:nth-child(2) .pr-n{transition-delay:.3s}.pr.vis .pr-step:nth-child(3) .pr-n{transition-delay:.8s}.pr.vis .pr-step:nth-child(4) .pr-n{transition-delay:1.3s}.pr.vis .pr-step:nth-child(5) .pr-n{transition-delay:1.8s}
+.pr.vis .pr-n{background:var(--gold);color:var(--void);box-shadow:0 0 16px rgba(210,177,94,.5)}
+.pr-step b{display:block;font-weight:700;font-size:1.05rem;letter-spacing:-.02em;margin-top:.9rem}
+.pr-step small{display:block;color:var(--mu);font-size:.86rem;line-height:1.45;margin-top:.25rem;max-width:26ch}
+.ind{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:2.8rem;padding-top:1.8rem;border-top:1px solid var(--cb)}
+.ind span{font-size:.86rem;font-weight:500;color:var(--mu);border:1px solid var(--cb2);border-radius:999px;padding:.4rem .9rem;transition:all var(--T)}
+.ind span:hover{color:var(--gold);border-color:rgba(210,177,94,.5)}
+.ind .ind-l{border:0;padding:0 .6rem 0 0;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.ind .ind-l:hover{color:var(--dim)}
+
+/* ---------- results loop ---------- */
+.cs-loop{position:relative;margin:3rem calc(var(--pad) * -1) 0;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.cs-loop.drag{cursor:grabbing}
+.cs-track{display:flex;gap:1.2rem;width:max-content;padding:1.2rem var(--pad) 1.6rem;will-change:transform}
+.cs-track .cs-card{width:340px;flex-shrink:0;transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1),border-color .45s,box-shadow .45s}
+.cs-loop:hover .cs-card{opacity:.45}
+.cs-loop .cs-card:hover{opacity:1;transform:translateY(-8px);border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 30px 60px -28px color-mix(in srgb,var(--c) 70%,transparent)}
+.cs-loop .cs-card:hover .cs-mv{text-shadow:0 0 24px color-mix(in srgb,var(--c) 55%,transparent)}
+.cs-card img,.cs-card svg{pointer-events:none}
+
+/* ---------- skills galaxy ---------- */
+.gx-legend{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:2.6rem}
+.gx-lg{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);border:1px solid var(--cb2);border-radius:999px;padding:.55rem 1rem;transition:all var(--T)}
+.gx-lg i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+.gx-lg:hover,.gx-lg.on{color:var(--text);border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,transparent)}
+.gx{position:relative;height:clamp(440px,46vw,620px);margin-top:1rem;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.gx.drag{cursor:grabbing}
+.gx.mob .gx-core,.gx.mob .gx-rings{display:none}
+.gx.mob::before{content:"";position:absolute;left:8%;right:8%;top:50%;height:64px;margin-top:-32px;border-radius:999px;border:1px solid rgba(210,177,94,.25);background:radial-gradient(ellipse,rgba(210,177,94,.1),transparent 70%);pointer-events:none}
+.gx.mob .gx-n{font-size:1rem;padding:.6rem 1.2rem}
+.gx-rings{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.gx-rings ellipse{fill:none;stroke:var(--rc);stroke-opacity:.16;stroke-width:1;stroke-dasharray:2 6;transition:stroke-opacity .4s}
+.gx-rings ellipse.on{stroke-opacity:.6;stroke-dasharray:none}
+.gx-core{position:absolute;left:50%;top:50%;width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:50;background:radial-gradient(circle at 35% 30%,#1c2036,#0a0b18 70%);border:1px solid rgba(210,177,94,.35);box-shadow:0 0 60px rgba(210,177,94,.18),inset 0 0 30px rgba(210,177,94,.08);pointer-events:none}
+.gx-core-g{position:absolute;inset:-18px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(210,177,94,.35),transparent 40%,rgba(90,168,255,.3),transparent 75%);filter:blur(14px);animation:spin 10s linear infinite;z-index:-1}
+.gx-core b{font-family:var(--serif);font-style:italic;font-weight:600;font-size:2.3rem;line-height:1;color:var(--gold)}
+.gx-core small{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-top:.35rem;text-align:center;max-width:10ch;line-height:1.4}
+.gx-n{position:absolute;left:0;top:0;white-space:nowrap;font-size:.84rem;font-weight:600;letter-spacing:-.01em;color:var(--text);padding:.45rem .85rem;border-radius:999px;background:color-mix(in srgb,var(--c) 14%,#0c0e1d);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);will-change:transform,opacity;transition:background .3s,box-shadow .3s,filter .4s;cursor:pointer}
+.gx-n::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c);margin-right:.45rem;vertical-align:1px}
+.gx-n.hot{background:var(--c);color:var(--void);box-shadow:0 0 30px color-mix(in srgb,var(--c) 70%,transparent)}
+.gx-n.hot::before{background:var(--void)}
+.gx-n.dim{filter:grayscale(1) brightness(.5)}
+.gx-tip{position:absolute;z-index:200;pointer-events:none;font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--void);background:var(--gl);padding:.3rem .6rem;border-radius:4px;opacity:0;transform:translate(-50%,-160%);transition:opacity .25s}
+.gx-tip.on{opacity:1}
+
+/* ---------- hobbies ---------- */
+.hb-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-top:3.2rem}
+.hb{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.8rem 1rem 1.5rem;border:1px solid var(--cb);border-radius:18px;background:radial-gradient(90% 70% at 50% 0%,color-mix(in srgb,var(--c) 11%,transparent),transparent 70%),var(--card);transition:border-color var(--T),transform var(--T)}
+.hb:hover{border-color:color-mix(in srgb,var(--c) 50%,transparent);transform:translateY(-6px)}
+.hb-ic{width:74px;height:74px;color:var(--c);margin-bottom:1.1rem;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c) 35%,transparent))}
+.hb-ic svg{width:100%;height:100%;overflow:visible}
+.hb b{font-weight:700;font-size:1.02rem;letter-spacing:-.02em}
+.hb small{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:.35rem;line-height:1.5}
+.hb-arms{transform-origin:32px 24px;animation:dance 1.6s ease-in-out infinite}
+.hb-keys rect{transform-box:fill-box;transform-origin:top;animation:keyPress 2.4s ease-in-out infinite}
+.hb-keys rect:nth-child(2){animation-delay:.3s}.hb-keys rect:nth-child(3){animation-delay:.6s}.hb-keys rect:nth-child(4){animation-delay:.9s}.hb-keys rect:nth-child(5){animation-delay:1.2s}
+.hb-reel{transform-origin:32px 30px;animation:spin 6s linear infinite}
+.hb-path{stroke-dasharray:4 5;animation:trek 2.5s linear infinite}
+.hb-road{animation:road .8s linear infinite}
+.hb-br{transform-origin:32px 32px;animation:breath 5s ease-in-out infinite}
+.hb-br2{animation-delay:.4s}.hb-br3{animation-delay:.8s}
+.hb:hover .hb-reel{animation-duration:1.5s}.hb:hover .hb-arms{animation-duration:.7s}.hb:hover .hb-road{animation-duration:.3s}
+
+.soc{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--cb2);color:var(--mu);transition:all var(--T)}
+.soc svg{width:19px;height:19px}
+.soc:hover{color:var(--void);background:var(--gold);border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 30px -10px rgba(210,177,94,.6)}
+.socials{gap:.9rem}
 
 /* ---------- details sheet ---------- */
 dialog.sheet{position:fixed;margin:auto;border:1px solid var(--cb2);background:linear-gradient(180deg,#14162c,#0b0c1a);color:var(--text);border-radius:20px;padding:0;width:min(640px,calc(100vw - 32px));max-height:min(82vh,780px);box-shadow:0 40px 120px -20px rgba(0,0,0,.85);overflow:hidden}
 dialog.sheet::backdrop{background:rgba(3,3,10,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
 .sheet-in{padding:2.4rem 2.4rem 2.2rem;overflow:auto;max-height:min(82vh,780px)}
 .sheet-x{position:absolute;top:1rem;right:1rem;width:38px;height:38px;border-radius:50%;border:1px solid var(--cb2);display:grid;place-items:center;color:var(--mu);transition:all var(--T);z-index:2}
 .sheet-x:hover{color:var(--gold);border-color:var(--gold);transform:rotate(90deg)}
@@ -381,6 +466,13 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
 .sheet .kpis b{display:block;font-weight:600;font-size:1.3rem;letter-spacing:-.03em;color:var(--gold)}
 .sheet .kpis small{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 
+/* ---------- sheet accent + open card ---------- */
+dialog.sheet{--c:var(--gold);border-color:color-mix(in srgb,var(--c) 38%,transparent);background:radial-gradient(120% 55% at 0% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 62%),linear-gradient(180deg,#14162c,#0b0c1a);box-shadow:0 40px 120px -20px rgba(0,0,0,.85),0 0 80px -30px color-mix(in srgb,var(--c) 60%,transparent)}
+dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 20%,transparent));z-index:3}
+.sheet .k{color:var(--c)}.sheet .kpis b{color:var(--c)}.sheet li::before{background:var(--c)}
+.sheet .kpis div{border-color:color-mix(in srgb,var(--c) 22%,transparent)}
+.sheet-x:hover{color:var(--c);border-color:var(--c)}
+.is-open{border-color:color-mix(in srgb,var(--c,var(--gold)) 60%,transparent)!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--c,var(--gold)) 40%,transparent),0 24px 60px -24px color-mix(in srgb,var(--c,var(--gold)) 70%,transparent)!important;opacity:1!important}
 /* ---------- spotlight + reveal ---------- */
 .spot{--mx:50%;--my:50%}
 .spot::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(380px circle at var(--mx) var(--my),rgba(210,177,94,.08),transparent 45%);opacity:0;transition:opacity .4s}
@@ -415,6 +507,13 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
 @keyframes bolt{0%,100%{opacity:.75}45%{opacity:1;filter:drop-shadow(0 0 6px currentColor)}50%{opacity:.4}55%{opacity:1}}
 @keyframes grow{0%{transform:scaleY(.2)}35%,85%{transform:scaleY(1)}100%{transform:scaleY(.2)}}
 @keyframes rise{0%{stroke-dashoffset:100}40%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:100}}
+@keyframes vlPulse{0%,100%{transform:scale(.8);opacity:.5}50%{transform:scale(1.15);opacity:1}}
+@keyframes vlSpin{0%,60%{transform:rotate(0)}80%,100%{transform:rotate(90deg)}}
+@keyframes dance{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg)}}
+@keyframes keyPress{0%,12%,100%{transform:scaleY(1);fill:transparent}6%{transform:scaleY(.94);fill:currentColor;fill-opacity:.35}}
+@keyframes trek{to{stroke-dashoffset:-18}}
+@keyframes road{to{stroke-dashoffset:-12}}
+@keyframes breath{0%,100%{transform:scale(.82)}50%{transform:scale(1.06)}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
 /* ---------- responsive ---------- */
@@ -432,6 +531,8 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
   #hero{padding-top:5.5rem}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .cs-grid,.vn-grid,.ln-grid{grid-template-columns:1fr 1fr}
+  .vl-grid{grid-template-columns:1fr 1fr}
+  .hb-grid{grid-template-columns:repeat(3,1fr)}
   .vn-card{min-height:300px}
   .isha-in{grid-template-columns:1fr;gap:2.5rem}
   .ph-grid{grid-template-columns:1fr;gap:2.5rem}
@@ -448,6 +549,13 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
   .h-scroll{display:none}
   .marq-item{font-size:.95rem;padding:0 1.1rem}.marq-item::after{margin-left:2.2rem}
   .cs-grid,.vn-grid,.ln-grid{grid-template-columns:1fr}
+  .vl-grid{grid-template-columns:1fr 1fr;gap:.7rem}.vl{padding:1.3rem 1.1rem}.vl h3{font-size:1.02rem}.vl p{font-size:.84rem}.vl-ic{width:46px;height:46px;margin-bottom:1rem}
+  .pr{grid-template-columns:1fr;gap:1.6rem;padding:0 0 0 2.6rem}
+  .pr-line{top:6px;bottom:6px;left:13px;right:auto;width:1px;height:auto}.pr-line i{transform:scaleY(0);transform-origin:top}.pr.vis .pr-line i{transform:scaleY(1)}
+  .pr-n{top:-.1rem;left:-2.6rem}.pr-step b{margin-top:0}
+  .cs-track .cs-card{width:290px}
+  .gx{height:420px}
+  .hb-grid{grid-template-columns:1fr 1fr;gap:.7rem}
   .vn-card{min-height:0}
   .glance{gap:.7rem}.gl-c{padding:1.4rem}
   .gl-c.feat{flex-direction:column;align-items:flex-start}.gl-spark{width:100%;max-width:none}
@@ -501,11 +609,12 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mobMenu">
   <a href="#about" onclick="closeMob()">About</a>
+  <a href="#value" onclick="closeMob()">Why me</a>
   <a href="#journey" onclick="closeMob()">Journey</a>
   <a href="#cases" onclick="closeMob()">Results</a>
   <a href="#ventures" onclick="closeMob()">Ventures</a>
   <a href="#isha" onclick="closeMob()">Inner Journey</a>
-  <a href="#learning" onclick="closeMob()">Learning</a>
+  <a href="#skills" onclick="closeMob()">Expertise</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
 </div>
 
@@ -515,11 +624,12 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
   <div class="n-right">
     <ul class="nr">
       <li><a href="#about">About</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#journey">Journey</a></li>
       <li><a href="#cases">Results</a></li>
       <li><a href="#ventures">Ventures</a></li>
       <li><a href="#isha">Inner</a></li>
-      <li><a href="#learning">Learning</a></li>
+      <li><a href="#skills">Expertise</a></li>
     </ul>
     <a href="#contact" class="n-cta">Let's talk</a>
     <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -539,7 +649,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
         <div class="h-stat"><b><span>$</span>10M<span>+</span></b><small>Ad spend managed</small></div>
         <div class="h-stat"><b>60<span>+</span></b><small>Clients</small></div>
         <div class="h-stat"><b>7<span>+</span></b><small>Years</small></div>
-        <div class="h-stat"><b>4</b><small>Countries</small></div>
+        <div class="h-stat"><b>8</b><small>Countries</small></div>
       </div>
       <div class="h-cta">
         <a href="#contact" class="bp mag">Work with me <span class="arr">→</span></a>
@@ -599,7 +709,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="m-about">Read my story <span class="pl">+</span></button>
       <template id="m-about">
         <p class="k">My story</p><h3>Where code meets consciousness</h3>
-        <p>A Computer Science graduate turned Senior Performance Marketing Manager, with 7+ years across Nepal, Singapore, India and Dubai.</p>
+        <p>A Computer Science graduate turned Senior Performance Marketing Manager, with 7+ years of work spanning 8 countries, from Kathmandu to Dubai.</p>
         <p>I've scaled SaaS platforms globally, served Sadhguru's Isha Foundation, trained with Google as a certified partner, and managed $10M+ in paid media for 60+ clients across my career.</p>
         <p>Between campaigns, I build startups. Between dashboards, I meditate.</p>
       </template>
@@ -616,11 +726,36 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       </div>
       <div class="gl-c spot rev rd1"><svg class="gl-ic"><use href="#i-users"/></svg><div class="gl-v"><span class="cnt" data-count="60">0</span><span>+</span></div><div class="gl-l">Clients</div><div class="gl-bar"></div></div>
       <div class="gl-c spot rev rd2"><svg class="gl-ic"><use href="#i-clock"/></svg><div class="gl-v"><span class="cnt" data-count="7">0</span><span>+</span></div><div class="gl-l">Years</div><div class="gl-bar"></div></div>
-      <div class="gl-c spot rev rd3"><svg class="gl-ic"><use href="#i-pin"/></svg><div class="gl-v"><span class="cnt" data-count="4">0</span></div><div class="gl-l">Countries</div><div class="gl-bar"></div></div>
+      <div class="gl-c spot rev rd3"><svg class="gl-ic"><use href="#i-pin"/></svg><div class="gl-v"><span class="cnt" data-count="8">0</span></div><div class="gl-l">Countries</div><div class="gl-bar"></div></div>
       <div class="gl-c spot rev rd4"><svg class="gl-ic"><use href="#i-target"/></svg><div class="gl-v"><span class="cnt" data-count="9">0</span></div><div class="gl-l">Google certifications</div><div class="gl-bar"></div></div>
     </div>
   </div>
 </section>
+
+<!-- ===== VALUE ===== -->
+<div class="band"><section class="sec" id="value">
+  <div class="sec-head rev">
+    <div><p class="slbl">For founders & CEOs</p><h2 class="stitle">Why leaders <em>hire</em> me</h2></div>
+    <p class="sdesc" style="margin-top:0">Growth you can see on the P&L.</p>
+  </div>
+  <div class="vl-grid">
+    <div class="vl spot rev" style="--c:var(--gold)"><div class="vl-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40h36" opacity=".4"/><path class="vl-draw" d="M8 34 18 24l7 6 15-16"/><path d="M32 14h8v8"/></svg></div><h3>Revenue over vanity</h3><p>ROAS, CPA and pipeline tied to your P&L.</p></div>
+    <div class="vl spot rev rd1" style="--c:var(--az)"><div class="vl-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="24" r="17" opacity=".35"/><circle class="vl-pulse" cx="24" cy="24" r="10"/><circle cx="24" cy="24" r="3" fill="currentColor"/></svg></div><h3>Data you can trust</h3><p>GA4, GTM and clean attribution before a dirham is spent.</p></div>
+    <div class="vl spot rev rd2" style="--c:var(--vio)"><div class="vl-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path class="vl-spin" d="M24 6c1.2 8.4 5.6 12.8 14 14-8.4 1.2-12.8 5.6-14 14-1.2-8.4-5.6-12.8-14-14 8.4-1.2 12.8-5.6 14-14z" fill="currentColor" fill-opacity=".15"/><path d="M38 32c.6 3.2 2.2 4.8 5 5.2-2.8.6-4.4 2.2-5 5.2-.6-3-2.2-4.6-5-5.2 2.8-.4 4.4-2 5-5.2z"/></svg></div><h3>AI-powered speed</h3><p>Automation that cuts reporting time and finds wins faster.</p></div>
+    <div class="vl spot rev rd3" style="--c:var(--sage)"><div class="vl-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="17" cy="16" r="6"/><path d="M5 40c1-7 6-11 12-11s11 4 12 11"/><circle class="vl-bob" cx="34" cy="18" r="4.5"/><path d="M31 29c6 0 10 3.5 11 10"/></svg></div><h3>Calm, clear leadership</h3><p>Transparent weekly reporting and a team that owns outcomes.</p></div>
+  </div>
+  <div class="pr rev" id="proc">
+    <div class="pr-line"><i></i></div>
+    <div class="pr-step"><span class="pr-n">01</span><b>Audit</b><small>Find leaks in funnel, tracking and spend</small></div>
+    <div class="pr-step"><span class="pr-n">02</span><b>Strategy</b><small>Channel mix, budgets and KPIs agreed with you</small></div>
+    <div class="pr-step"><span class="pr-n">03</span><b>Launch & test</b><small>Structured creative and audience testing</small></div>
+    <div class="pr-step"><span class="pr-n">04</span><b>Scale</b><small>Double down on winners, cut what doesn't pay</small></div>
+  </div>
+  <div class="ind rev">
+    <span class="ind-l">Industries served</span>
+    <span>Real estate</span><span>Hospitality</span><span>Luxury</span><span>E-commerce</span><span>B2B SaaS</span><span>Education</span><span>Mobility</span><span>Beauty</span><span>Non-profit</span>
+  </div>
+</section></div>
 
 <!-- ===== JOURNEY ===== -->
 <section id="journey" aria-label="Career roadmap">
@@ -716,10 +851,10 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
 <div class="band"><section class="sec" id="cases">
   <div class="sec-head rev">
     <div><p class="slbl">Case Studies</p><h2 class="stitle">Results that <em>speak</em></h2></div>
-    <p class="sdesc" style="margin-top:0">Six industries. Measurable growth.</p>
+    <p class="sdesc" style="margin-top:0">Six industries. Hover to pause, drag to explore.</p>
   </div>
-  <div class="cs-grid">
-    <article class="cs-card rev" style="--c:var(--gold)" data-seed="3">
+  <div class="cs-loop rev" id="csLoop"><div class="cs-track" id="csTrack">
+    <article class="cs-card" style="--c:var(--gold)" data-seed="3">
       <div class="cs-top"><svg><use href="#i-cart"/></svg>E-Commerce</div>
       <div class="cs-big"><span class="cs-mv">4.8x</span><span class="cs-ml">ROAS</span></div>
       <svg class="cs-spark" aria-hidden="true"></svg>
@@ -728,7 +863,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="c0">Case details <span class="pl">+</span></button>
       <template id="c0"><p class="k">E-Commerce · Meta · Google Shopping · GA4 · GTM</p><h3>Fashion brand: UAE DTC scale</h3><div class="kpis"><div><b>4.8x</b><small>ROAS</small></div><div><b>−52%</b><small>CPA</small></div><div><b>+210%</b><small>Revenue</small></div><div><b>3 mo</b><small>Timeline</small></div></div><p>Rebuilt the full funnel for a luxury fashion DTC brand. A creative testing framework, a GA4 + GTM overhaul, and Meta Advantage+ alongside Google Shopping, with Looker Studio for real-time ROAS tracking.</p></template>
     </article>
-    <article class="cs-card rev rd1" style="--c:var(--az)" data-seed="7">
+    <article class="cs-card" style="--c:var(--az)" data-seed="7">
       <div class="cs-top"><svg><use href="#i-case"/></svg>B2B SaaS</div>
       <div class="cs-big"><span class="cs-mv">+180%</span><span class="cs-ml">Leads</span></div>
       <svg class="cs-spark" aria-hidden="true"></svg>
@@ -737,7 +872,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="c1">Case details <span class="pl">+</span></button>
       <template id="c1"><p class="k">B2B SaaS · LinkedIn · Google Search · HubSpot · Email</p><h3>Tech startup: pipeline generation</h3><div class="kpis"><div><b>+180%</b><small>Leads</small></div><div><b>−65%</b><small>CPL</small></div><div><b>38%</b><small>Demo close</small></div><div><b>6 mo</b><small>Duration</small></div></div><p>A LinkedIn lead gen engine plus Google Search intent and HubSpot CRM integration. Audiences layered by seniority, industry and company size, with automated email nurture sequences.</p></template>
     </article>
-    <article class="cs-card rev rd2" style="--c:var(--sp)" data-seed="11">
+    <article class="cs-card" style="--c:var(--sp)" data-seed="11">
       <div class="cs-top"><svg><use href="#i-home"/></svg>Real Estate</div>
       <div class="cs-big"><span class="cs-mv">+290%</span><span class="cs-ml">Enquiries</span></div>
       <svg class="cs-spark" aria-hidden="true"></svg>
@@ -746,7 +881,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="c2">Case details <span class="pl">+</span></button>
       <template id="c2"><p class="k">Real Estate · Google · Meta · Snapchat · CM360</p><h3>GCC developer: lead machine</h3><div class="kpis"><div><b>4.2x</b><small>ROAS</small></div><div><b>1.2M</b><small>AED leads</small></div><div><b>−41%</b><small>CPL</small></div><div><b>+290%</b><small>Enquiries</small></div></div><p>Multi-channel for a Dubai real estate developer: Google Search, Meta dynamic video ads and Snapchat for GCC buyers. Full attribution from click to qualified property enquiry.</p></template>
     </article>
-    <article class="cs-card rev" style="--c:var(--sage)" data-seed="5">
+    <article class="cs-card" style="--c:var(--sage)" data-seed="5">
       <div class="cs-top"><svg><use href="#i-car"/></svg>Ride-Sharing</div>
       <div class="cs-big"><span class="cs-mv">2.8M</span><span class="cs-ml">Installs</span></div>
       <svg class="cs-spark" aria-hidden="true"></svg>
@@ -755,7 +890,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="c3">Case details <span class="pl">+</span></button>
       <template id="c3"><p class="k">Ride-Sharing · Google UAC · Meta · TikTok · Deep links</p><h3>Mobility app: install & retention</h3><div class="kpis"><div><b>2.8M</b><small>Installs</small></div><div><b>−42%</b><small>CPI</small></div><div><b>+34%</b><small>D7 retention</small></div><div><b>+190%</b><small>Re-engage</small></div></div><p>Google UAC, Meta App Install and TikTok TopView for GCC market entry, plus a retargeting system for lapsed users using deep links and re-engagement ad sequences.</p></template>
     </article>
-    <article class="cs-card rev rd1" style="--c:var(--rose)" data-seed="9">
+    <article class="cs-card" style="--c:var(--rose)" data-seed="9">
       <div class="cs-top"><svg><use href="#i-spark"/></svg>Beauty</div>
       <div class="cs-big"><span class="cs-mv">5.2x</span><span class="cs-ml">IG ROAS</span></div>
       <svg class="cs-spark" aria-hidden="true"></svg>
@@ -764,7 +899,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="c4">Case details <span class="pl">+</span></button>
       <template id="c4"><p class="k">Beauty · Instagram · TikTok Spark · Meta Shopping</p><h3>Beauty brand: social commerce</h3><div class="kpis"><div><b>5.2x</b><small>IG ROAS</small></div><div><b>3x</b><small>DTC revenue</small></div><div><b>+420%</b><small>TikTok reach</small></div><div><b>−38%</b><small>CAC</small></div></div><p>A creator-led performance strategy: UGC feeding paid amplification, Instagram Shopping and TikTok Spark Ads, with lookalike audiences built from high-LTV customers.</p></template>
     </article>
-    <article class="cs-card rev rd2" style="--c:var(--vio)" data-seed="2">
+    <article class="cs-card" style="--c:var(--vio)" data-seed="2">
       <div class="cs-top"><svg><use href="#i-cap"/></svg>Education</div>
       <div class="cs-big"><span class="cs-mv">3.6x</span><span class="cs-ml">Conv. lift</span></div>
       <svg class="cs-spark" aria-hidden="true"></svg>
@@ -773,7 +908,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button class="more-btn" data-more="c5">Case details <span class="pl">+</span></button>
       <template id="c5"><p class="k">Education · DV360 · Google · Meta · YouTube</p><h3>UK university: enrolment campaign</h3><div class="kpis"><div><b>+89%</b><small>Leads</small></div><div><b>−38%</b><small>CPL</small></div><div><b>14</b><small>Markets</small></div><div><b>3.6x</b><small>Conv. lift</small></div></div><p>International student recruitment for a UK university targeting South Asian and GCC markets: DV360 programmatic, Google Search, Meta lead forms and YouTube pre-roll with localised creative.</p></template>
     </article>
-  </div>
+  </div></div>
 </section></div>
 
 <!-- ===== VENTURES ===== -->
@@ -834,16 +969,38 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
   </div>
 </div>
 
+<!-- ===== OFF THE CLOCK ===== -->
+<section class="sec" id="life">
+  <div class="sec-head rev">
+    <div><p class="slbl">Off the clock</p><h2 class="stitle">What keeps me <em>human</em></h2></div>
+    <p class="sdesc" style="margin-top:0">The rhythm behind the work.</p>
+  </div>
+  <div class="hb-grid">
+    <div class="hb rev" style="--c:var(--rose)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="12" r="5"/><path d="M32 18v18M32 36l-8 16M32 36l9 15"/><g class="hb-arms"><path d="M32 24 20 16M32 24l13-6"/></g></svg></div><b>Dancing</b><small>Rhythm over rules</small></div>
+    <div class="hb rev rd1" style="--c:var(--gl)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="16" width="48" height="32" rx="3"/><g class="hb-keys"><rect x="11" y="19" width="8" height="26" rx="1"/><rect x="20" y="19" width="8" height="26" rx="1"/><rect x="29" y="19" width="8" height="26" rx="1"/><rect x="38" y="19" width="8" height="26" rx="1"/><rect x="47" y="19" width="6" height="26" rx="1"/></g><g fill="currentColor" stroke="none"><rect x="17" y="19" width="5" height="15" rx="1"/><rect x="26" y="19" width="5" height="15" rx="1"/><rect x="44" y="19" width="5" height="15" rx="1"/></g></svg></div><b>Playing piano</b><small>Keys that calm</small></div>
+    <div class="hb rev rd2" style="--c:var(--az)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><g class="hb-reel"><circle cx="32" cy="30" r="20"/><circle cx="32" cy="30" r="3.5" fill="currentColor"/><circle cx="32" cy="18" r="5"/><circle cx="43.4" cy="26.3" r="5"/><circle cx="39" cy="39.7" r="5"/><circle cx="25" cy="39.7" r="5"/><circle cx="20.6" cy="26.3" r="5"/></g><path d="M44 48c6 1 10 3 12 6" stroke-linecap="round"/></svg></div><b>Movies</b><small>Stories that stay</small></div>
+    <div class="hb rev rd3" style="--c:var(--sage)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 54 22 22l10 14 8-10 20 28z" fill="currentColor" fill-opacity=".1"/><path d="M17 31l5-9 5 7" opacity=".6"/><path class="hb-path" d="M14 54c6-4 10-6 14-12s8-8 12-14"/><path d="M40 28V14l8 3-8 3"/></svg></div><b>Solo trek</b><small>Mountains, alone</small></div>
+    <div class="hb rev rd4" style="--c:var(--sp)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M26 12 10 56M38 12l16 44" /><path class="hb-road" d="M32 14v42" stroke-dasharray="5 7"/><circle cx="50" cy="14" r="5" opacity=".6"/></svg></div><b>Long drive</b><small>Open roads, clear head</small></div>
+    <div class="hb rev rd5" style="--c:var(--gold)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle class="hb-br hb-br3" cx="32" cy="32" r="26" opacity=".25"/><circle class="hb-br hb-br2" cx="32" cy="32" r="18" opacity=".5"/><circle class="hb-br" cx="32" cy="32" r="10"/><circle cx="32" cy="32" r="3" fill="currentColor"/></svg></div><b>Silence</b><small>Going back to the self</small></div>
+  </div>
+</section>
+
 <!-- ===== SKILLS ===== -->
 <section class="sec" id="skills">
-  <div class="rev"><p class="slbl">Expertise</p><h2 class="stitle">The full <em>stack</em></h2></div>
-  <div class="tabs rev" role="tablist" id="skTabs">
-    <button class="tab" role="tab" aria-selected="true" data-k="0">Paid Media</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="1">Analytics & Tech</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="2">Strategy & Growth</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="3">Leadership & AI</button>
+  <div class="sec-head rev">
+    <div><p class="slbl">Expertise</p><h2 class="stitle">The growth <em>galaxy</em></h2></div>
+    <p class="sdesc" style="margin-top:0"><span id="gxCount">36</span> skills in orbit. Hover to pause, drag to spin.</p>
   </div>
-  <div class="chips" id="skChips" role="tabpanel"></div>
+  <div class="gx-legend rev" id="gxLegend">
+    <button class="gx-lg" data-r="0" style="--c:var(--gold)"><i></i>Paid Media</button>
+    <button class="gx-lg" data-r="1" style="--c:var(--az)"><i></i>Analytics & Tech</button>
+    <button class="gx-lg" data-r="2" style="--c:var(--sage)"><i></i>Strategy & Growth</button>
+    <button class="gx-lg" data-r="3" style="--c:var(--vio)"><i></i>Leadership & AI</button>
+  </div>
+  <div class="gx rev" id="gx" role="img" aria-label="Interactive orbit of marketing, analytics, strategy and AI skills">
+    <svg class="gx-rings" id="gxRings" aria-hidden="true"></svg>
+    <div class="gx-core"><span class="gx-core-g"></span><b>MB</b><small>Full-funnel growth</small></div>
+  </div>
   <div class="certs rev">
     <div class="certs-n"><b>9</b><span>Google & industry certifications</span></div>
     <ul><li>Ads Search</li><li>Ads Display</li><li>Ads Video</li><li>Ads Shopping</li><li>AI-Powered Performance</li><li>Google Analytics</li><li>Privacy-Safe Ads</li><li>Tech Support</li><li>Salesforce · Aleph</li></ul>
@@ -855,7 +1012,7 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
   <div class="rev"><p class="slbl">Philosophy</p><h2 class="stitle">The minds that <em>shaped</em> me</h2></div>
   <div class="ph-grid">
     <div class="ph-stage rev" id="phStage">
-      <p class="ph-k">What they taught me</p>
+      <p class="ph-k">In their words</p>
       <p class="ph-q" id="phQ"></p>
       <div class="ph-who"><span class="ph-av" id="phAv"></span><div><b id="phName"></b><small id="phLbl"></small></div></div>
       <i class="ph-timer" id="phTimer"></i>
@@ -863,16 +1020,18 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
     <div class="ph-list rev rd2">
       <h4>Business & technology</h4>
       <div class="ph-names">
-        <button class="ph-n" data-l="Apple co-founder" data-q="Great marketing is great storytelling. Simplicity is the ultimate sophistication.">Steve Jobs</button>
-        <button class="ph-n" data-l="First principles" data-q="The biggest opportunity lives in the questions nobody dares to ask.">Elon Musk</button>
-        <button class="ph-n" data-l="Philosopher of wealth" data-q="Specific knowledge, leverage and accountability. Compound genuine curiosity.">Naval Ravikant</button>
+        <button class="ph-n" data-l="Apple co-founder" data-q="Stay hungry. Stay foolish.">Steve Jobs</button>
+        <button class="ph-n" data-l="Tesla · SpaceX" data-q="When something is important enough, you do it even if the odds are not in your favor.">Elon Musk</button>
+        <button class="ph-n" data-l="AngelList · philosopher of wealth" data-q="Seek wealth, not money or status.">Naval Ravikant</button>
       </div>
       <h4>Spirituality & consciousness</h4>
       <div class="ph-names">
-        <button class="ph-n" data-l="Isha Foundation · the teacher I lived with" data-q="Inner engineering precedes outer results. Every campaign carries a trace of it.">Sadhguru</button>
-        <button class="ph-n" data-l="Mystic · philosopher of now" data-q="Existence is playful. Direct experience is the only authority worth trusting.">Osho · Alan Watts</button>
-        <button class="ph-n" data-l="Present moment · non-duality" data-q="Clarity is not a skill. It is the complete absence of noise.">Tolle · Krishnamurti</button>
-        <button class="ph-n" data-l="Boundless love" data-q="Love everyone, serve everyone, remember God.">Neem Karoli Baba</button>
+        <button class="ph-n" data-l="Yogi · Isha Foundation" data-q="The only way out is in.">Sadhguru</button>
+        <button class="ph-n" data-l="Mystic · meditation" data-q="Be — don't try to become.">Osho</button>
+        <button class="ph-n" data-l="Philosopher · Zen & Tao" data-q="The only way to make sense out of change is to plunge into it, move with it, and join the dance.">Alan Watts</button>
+        <button class="ph-n" data-l="The Power of Now" data-q="Realize deeply that the present moment is all you ever have.">Eckhart Tolle</button>
+        <button class="ph-n" data-l="Philosopher · freedom from the known" data-q="The ability to observe without evaluating is the highest form of intelligence.">Jiddu Krishnamurti</button>
+        <button class="ph-n" data-l="Saint · boundless love" data-q="Love everyone, serve everyone, remember God.">Neem Karoli Baba</button>
       </div>
     </div>
   </div>
@@ -913,10 +1072,10 @@ dialog.sheet[open]{animation:sheetIn .5s cubic-bezier(.2,.8,.2,1)}
       <button type="button" class="bo mag copy-btn" id="copyEmail" data-email="hello@madhavbhattarai.com">Copy email</button>
     </div>
     <div class="socials">
-      <a href="https://www.linkedin.com/in/madhav-bhattarai811/" class="soc" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/_madhav_bhattarai/" class="soc" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/madhab.bhattarai.12" class="soc" target="_blank" rel="noopener">Facebook</a>
-      <a href="#ventures" class="soc">CogniMorph</a>
+      <a href="https://www.linkedin.com/in/madhav-bhattarai811/" class="soc" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a href="https://www.instagram.com/_madhav_bhattarai/" class="soc" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.facebook.com/madhab.bhattarai.12" class="soc" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg></a>
+      <a href="#ventures" class="soc" aria-label="CogniMorph" title="CogniMorph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2.6" fill="currentColor"/><circle cx="5" cy="6" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="6" cy="19" r="1.8"/><circle cx="18" cy="18" r="1.8"/><path d="M6.4 7.2 10 10.3M17.6 7.2 14 10.3M7.3 17.8l3-3.8M16.7 16.8l-2.8-2.9"/></svg></a>
     </div>
   </div>
 </section></div>
@@ -1029,15 +1188,54 @@ const rObs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retu
   const b=e.target.querySelector(".ring b");countUp(b,+rf.dataset.p,0,"","%",1600)}),{threshold:.4});
 document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
 
-// ===== SKILL TABS =====
+// ===== SKILLS GALAXY (3D orbit) =====
 (function(){
-  const sets=[["Google Ads","Meta Ads","TikTok & Spark Ads","LinkedIn Ads","Snapchat Ads","DV360","CM360","YouTube","Reddit","X Ads","Bing Ads"],
-    ["GA4","Google Tag Manager","Looker Studio","HubSpot CRM","Salesforce","SEMRush","Ahrefs","BigQuery","ClickUp","JIRA"],
-    ["Full-funnel strategy","ROAS / CPA optimisation","Lead generation","App install & retention","CRO","Programmatic","Email automation","Attribution"],
-    ["Team building & mentoring","Client strategy & QBRs","$10M+ budget management","AI marketing automation","LLM prompt engineering","Cross-cultural communication","Data visualisation"]];
-  const tabs=[...document.querySelectorAll("#skTabs .tab")],box=document.getElementById("skChips");
-  function show(k){tabs.forEach(t=>t.setAttribute("aria-selected",t.dataset.k==k));box.innerHTML=sets[k].map((s,i)=>'<span class="chip" style="--i:'+i+'">'+s+'</span>').join("")}
-  tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.k)));show(0);
+  const gx=document.getElementById("gx");if(!gx)return;
+  const ringsSvg=document.getElementById("gxRings"),legend=[...document.querySelectorAll(".gx-lg")];
+  const cols=["var(--gold)","var(--az)","var(--sage)","var(--vio)"],cats=["Paid Media","Analytics & Tech","Strategy & Growth","Leadership & AI"];
+  const sets=[["Google Ads","Meta Ads","TikTok & Spark","LinkedIn Ads","Snapchat Ads","DV360","CM360","YouTube","Reddit · X · Bing"],
+    ["GA4","Tag Manager","Looker Studio","HubSpot","Salesforce","SEMRush","Ahrefs","BigQuery"],
+    ["Full-funnel strategy","ROAS / CPA","Lead gen","App growth","CRO","Programmatic","Email automation"],
+    ["Team leadership","Client strategy","$10M+ budgets","AI automation","Prompt engineering","Data storytelling"]];
+  document.getElementById("gxCount").textContent=sets.flat().length;
+  const tip=document.createElement("div");tip.className="gx-tip";gx.appendChild(tip);
+  const rings=sets.map((items,r)=>({r,angle:r*.7,dir:r%2?-1:1,speed:[.06,.085,.11,.14][r],
+    nodes:items.map(t=>{const el=document.createElement("span");el.className="gx-n";el.textContent=t;el.style.setProperty("--c",cols[r]);el.dataset.r=r;gx.appendChild(el);return el})}));
+  const ells=rings.map((_,r)=>{const e=document.createElementNS("http://www.w3.org/2000/svg","ellipse");e.style.setProperty("--rc",cols[r]);ringsSvg.appendChild(e);return e});
+  let W,H,cx,cy,K,R=[],mobile=false,focus=-1,lock=-1,paused=false,vis=false,raf=0,last=0,vel=0,drag=null;
+  function layout(){W=gx.clientWidth;H=gx.clientHeight;cx=W/2;cy=H/2;mobile=W<640;gx.classList.toggle("mob",mobile);
+    const Rmax=Math.min(W*.47,H*1.12);K=mobile?.62:.4;
+    R=mobile?[0,0,0,0].map(()=>W*.33):[1,.79,.58,.38].map(f=>Rmax*f);
+    ells.forEach((e,i)=>{e.setAttribute("cx",cx);e.setAttribute("cy",cy);e.setAttribute("rx",R[i]);e.setAttribute("ry",R[i]*K)});
+    if(mobile&&lock<0)setFocus(0,true);applyVis();draw()}
+  function applyVis(){rings.forEach((g,i)=>{const show=!mobile||i===(lock<0?0:lock);g.nodes.forEach(n=>{n.style.display=show?"":"none";n.classList.toggle("dim",!mobile&&focus>=0&&focus!==i)});ells[i].style.display=show?"":"none";ells[i].classList.toggle("on",focus===i)})}
+  function setFocus(i,isLock){if(isLock){lock=i}focus=i;legend.forEach(b=>b.classList.toggle("on",+b.dataset.r===(focus)));applyVis()}
+  function draw(){
+    rings.forEach((g,i)=>{const n=g.nodes.length;g.nodes.forEach((el,j)=>{
+      const th=g.angle+j*6.2832/n;let x,y,d,sc;
+      if(mobile){const c=Math.cos(th);x=cx;y=cy+H*.4*Math.sin(th);d=Math.max(0,c);sc=.6+.45*d;if(c<.05){el.style.opacity=0;el.style.zIndex=0;el.style.transform="translate("+x+"px,"+y+"px) translate(-50%,-50%) scale(.5)";return}}
+      else{x=cx+R[i]*Math.cos(th);y=cy+R[i]*K*Math.sin(th);d=(Math.sin(th)+1)/2;sc=.72+.36*d}
+      el.style.transform="translate("+x+"px,"+y+"px) translate(-50%,-50%) scale("+sc.toFixed(3)+")";
+      el.style.opacity=el.classList.contains("hot")?1:(.3+.7*d).toFixed(3);el.style.zIndex=d>.5?60+Math.round(d*40):Math.round(d*40)})})}
+  function loop(now){raf=0;const dt=Math.min(.05,(now-last)/1000);last=now;
+    if(!drag){if(!paused&&!RMQ)rings.forEach(g=>g.angle+=g.dir*g.speed*dt);if(Math.abs(vel)>.0001){rings.forEach(g=>g.angle+=vel*(g.dir));vel*=.94}}
+    draw();if(vis&&!document.hidden)raf=requestAnimationFrame(loop)}
+  const kick=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(loop)}};
+  new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis)kick()}).observe(gx);
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden&&vis)kick()});
+  gx.addEventListener("mouseover",e=>{const n=e.target.closest(".gx-n");if(!n)return;paused=true;n.classList.add("hot");
+    tip.textContent=cats[n.dataset.r];tip.classList.add("on");const r=n.getBoundingClientRect(),g=gx.getBoundingClientRect();tip.style.left=(r.left-g.left+r.width/2)+"px";tip.style.top=(r.top-g.top)+"px";if(lock<0&&!mobile)setFocus(+n.dataset.r)});
+  gx.addEventListener("mouseout",e=>{const n=e.target.closest(".gx-n");if(!n)return;n.classList.remove("hot");tip.classList.remove("on");paused=false;if(lock<0&&!mobile)setFocus(-1)});
+  legend.forEach(b=>{const i=+b.dataset.r;
+    b.addEventListener("mouseenter",()=>{if(!mobile&&lock<0)setFocus(i)});
+    b.addEventListener("mouseleave",()=>{if(!mobile&&lock<0)setFocus(-1)});
+    b.addEventListener("click",()=>{if(mobile){setFocus(i,true);draw();return}if(lock===i){lock=-1;setFocus(-1)}else setFocus(i,true)})});
+  gx.addEventListener("pointerdown",e=>{drag={x:e.clientX,lx:e.clientX,moved:false};vel=0});
+  addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.lx;drag.lx=e.clientX;if(Math.abs(e.clientX-drag.x)>4&&!drag.moved){drag.moved=true;gx.classList.add("drag")}
+    if(drag.moved){const a=dx*.006;rings.forEach(g=>g.angle+=a*g.dir);vel=a;draw()}});
+  addEventListener("pointerup",()=>{if(drag){gx.classList.remove("drag");drag=null}});
+  let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(layout,120)});
+  layout();
 })();
 
 // ===== PHILOSOPHY ROTATOR =====
@@ -1045,7 +1243,7 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
   const names=[...document.querySelectorAll(".ph-n")],stg=document.getElementById("phStage"),q=document.getElementById("phQ"),av=document.getElementById("phAv"),nm=document.getElementById("phName"),lb=document.getElementById("phLbl"),tm=document.getElementById("phTimer");
   let k=0,timer=null,paused=false;const DUR=7000;
   function set(i,anim){k=i;names.forEach((b,j)=>b.classList.toggle("on",j===i));const b=names[i];
-    const apply=()=>{q.textContent=b.dataset.q;nm.textContent=b.textContent;lb.textContent=b.dataset.l;av.textContent=b.textContent.split(/[\s·]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("");stg.classList.remove("swap")};
+    const apply=()=>{q.textContent="“"+b.dataset.q+"”";nm.textContent=b.textContent;lb.textContent=b.dataset.l;av.textContent=b.textContent.split(/[\s·]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("");stg.classList.remove("swap")};
     if(anim){stg.classList.add("swap");setTimeout(apply,380)}else apply();
     tm.style.transition="none";tm.style.width="0";requestAnimationFrame(()=>requestAnimationFrame(()=>{if(!paused&&!RMQ){tm.style.transition="width "+DUR+"ms linear";tm.style.width="100%"}}));
     clearTimeout(timer);if(!RMQ)timer=setTimeout(()=>{if(!paused)set((k+1)%names.length,true)},DUR)}
@@ -1055,14 +1253,54 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
   set(0,false);
 })();
 
-// ===== DETAILS SHEET =====
+// ===== DETAILS SHEET (expands from the clicked card) =====
 (function(){
-  const dlg=document.getElementById("sheet"),inner=document.getElementById("sheetIn");
+  const dlg=document.getElementById("sheet"),inner=document.getElementById("sheetIn");let srcCard=null,closing=false;
+  const EASE="cubic-bezier(.2,.8,.2,1)";
+  function rectAnim(from,to,rev){const sx=from.width/to.width,sy=from.height/to.height,dx=from.left-to.left,dy=from.top-to.top;
+    const k=[{transformOrigin:"0 0",transform:"translate("+dx+"px,"+dy+"px) scale("+sx+","+sy+")",opacity:.35},{transformOrigin:"0 0",transform:"none",opacity:1}];
+    return dlg.animate(rev?k.reverse():k,{duration:rev?380:560,easing:rev?"cubic-bezier(.4,0,.6,1)":EASE})}
   document.addEventListener("click",e=>{const b=e.target.closest("[data-more]");if(!b)return;const t=document.getElementById(b.dataset.more);if(!t)return;
+    if(b.closest(".cs-loop")&&b.closest(".cs-loop").dataset.dragged==="1")return;
+    srcCard=b.closest(".cs-card,.vn-card,.ln-card,.st-card,.gl-c,.vl,.hb")||b.closest(".rev")||b;
+    const c=getComputedStyle(srcCard).getPropertyValue("--c").trim();dlg.style.setProperty("--c",c||"#d2b15e");
+    srcCard.classList.add("is-open");
     inner.innerHTML="";inner.appendChild(t.content.cloneNode(true));inner.scrollTop=0;
-    if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","")});
-  document.getElementById("sheetX").addEventListener("click",()=>dlg.close());
-  dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+    const from=srcCard.getBoundingClientRect();
+    if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
+    if(!RMQ&&dlg.animate){rectAnim(from,dlg.getBoundingClientRect(),false);inner.animate([{opacity:0},{opacity:0,offset:.45},{opacity:1}],{duration:600,easing:"ease-out"})}
+  });
+  function closeSheet(){if(closing||!dlg.open)return;closing=true;
+    const done=()=>{dlg.close();closing=false};
+    const from=srcCard&&srcCard.getBoundingClientRect();
+    if(!RMQ&&dlg.animate&&from&&from.width&&from.bottom>0&&from.top<innerHeight){inner.animate([{opacity:1},{opacity:0}],{duration:160,fill:"forwards"});rectAnim(from,dlg.getBoundingClientRect(),true).onfinish=done}else done()}
+  dlg.addEventListener("close",()=>{if(srcCard)srcCard.classList.remove("is-open");inner.getAnimations&&inner.getAnimations().forEach(a=>a.cancel())});
+  dlg.addEventListener("cancel",e=>{e.preventDefault();closeSheet()});
+  document.getElementById("sheetX").addEventListener("click",closeSheet);
+  dlg.addEventListener("click",e=>{if(e.target===dlg)closeSheet()});
+})();
+
+// ===== RESULTS LOOP (auto-scroll, hover pause, drag) =====
+(function(){
+  const loop=document.getElementById("csLoop"),track=document.getElementById("csTrack");if(!loop)return;
+  const orig=[...track.children];
+  orig.forEach(o=>{const c=o.cloneNode(true);c.querySelectorAll("template").forEach(t=>t.remove());c.setAttribute("aria-hidden","true");c.querySelectorAll("button").forEach(b=>b.tabIndex=-1);track.appendChild(c)});
+  let x=0,half=1,hover=false,vis=false,raf=0,last=0,drag=null,vel=0;const SPEED=RMQ?0:38;
+  const measure=()=>{half=track.children[orig.length].offsetLeft-track.children[0].offsetLeft};
+  const wrap=()=>{if(x<=-half)x+=half;if(x>0)x-=half};
+  function frame(now){raf=0;const dt=Math.min(.05,(now-last)/1000);last=now;
+    if(!drag){if(!hover)x-=SPEED*dt;if(Math.abs(vel)>.05){x+=vel;vel*=.93}}
+    wrap();track.style.transform="translate3d("+x+"px,0,0)";if(vis&&!document.hidden)raf=requestAnimationFrame(frame)}
+  const kick=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(frame)}};
+  new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis){kick();track.querySelectorAll(".cs-card").forEach(c=>c.classList.add("vis"))}},{threshold:.15}).observe(loop);
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden&&vis)kick()});
+  if(FINEQ){loop.addEventListener("mouseenter",()=>hover=true);loop.addEventListener("mouseleave",()=>hover=false)}
+  loop.addEventListener("pointerdown",e=>{drag={sx:e.clientX,lx:e.clientX,moved:false};vel=0;loop.dataset.dragged="0"});
+  addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.lx;drag.lx=e.clientX;
+    if(!drag.moved&&Math.abs(e.clientX-drag.sx)>6){drag.moved=true;loop.classList.add("drag");loop.dataset.dragged="1"}
+    if(drag.moved){x+=dx;vel=dx;wrap();track.style.transform="translate3d("+x+"px,0,0)"}});
+  addEventListener("pointerup",()=>{if(!drag)return;loop.classList.remove("drag");const m=drag.moved;drag=null;if(m)setTimeout(()=>loop.dataset.dragged="0",50);if(!hover)kick()});
+  addEventListener("resize",measure);measure();if(document.fonts)document.fonts.ready.then(measure);
 })();
 
 // ===== CAREER ROADMAP (scroll-driven horizontal path) =====
@@ -1185,7 +1423,6 @@ if(FINEQ&&!RMQ){
     b.addEventListener("mousemove",e=>{const r=b.getBoundingClientRect();b.style.transform="translate("+((e.clientX-r.left-r.width/2)*.22)+"px,"+((e.clientY-r.top-r.height/2)*.35)+"px)";b.style.transition="transform .1s"});
     b.addEventListener("mouseleave",()=>{b.style.transform="";b.style.transition="transform .5s cubic-bezier(.2,.8,.2,1)"});
   });
-  document.querySelectorAll(".cs-card").forEach(c=>c.classList.add("spot"));
   document.querySelectorAll(".spot").forEach(c=>{
     c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
       c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");
