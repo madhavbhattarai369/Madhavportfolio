@@ -88,11 +88,17 @@ nav.sc{background:rgba(5,6,13,.82);backdrop-filter:blur(22px);-webkit-backdrop-f
 .hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-.mob-menu{position:fixed;inset:0;background:rgba(5,6,13,.97);backdrop-filter:blur(28px);z-index:400;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.mob-menu{position:fixed;top:0;right:0;bottom:0;width:min(86vw,380px);background:linear-gradient(180deg,rgba(14,16,32,.98),rgba(5,6,13,.98));border-left:1px solid rgba(210,177,94,.2);box-shadow:-30px 0 80px rgba(0,0,0,.6);backdrop-filter:blur(28px);z-index:400;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:.2rem;padding:5.6rem 1.8rem calc(1.8rem + env(safe-area-inset-bottom,0px));overflow-y:auto;counter-reset:mm;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .mob-menu.open{transform:none;pointer-events:all}
-.mob-menu a{font-family:var(--sans);font-size:1.9rem;font-weight:600;letter-spacing:-.02em;color:var(--mu);text-decoration:none;opacity:0;transform:translateX(28px);transition:all .4s ease}
-.mob-menu.open a{opacity:1;transform:none}
-.mob-menu a:hover{color:var(--gold)}
+.mob-menu a.mm{counter-increment:mm;display:flex;align-items:baseline;gap:.9rem;padding:.72rem 0;border-bottom:1px solid var(--cb);font-family:var(--sans);font-size:1.45rem;font-weight:600;letter-spacing:-.025em;color:var(--mu);text-decoration:none;opacity:0;transform:translateX(34px);transition:opacity .45s ease,transform .5s cubic-bezier(.2,.8,.2,1),color .3s}
+.mob-menu a.mm::before{content:counter(mm,decimal-leading-zero);font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--gold);opacity:.7}
+.mob-menu a.mm.act{color:var(--gold)}
+.mm-foot{margin-top:auto;padding-top:1.8rem;display:flex;flex-direction:column;gap:1.2rem;opacity:0;transform:translateY(16px);transition:all .5s .35s}
+.mob-menu.open .mm-foot{opacity:1;transform:none}
+.mm-foot .bp{justify-content:center}
+.mm-foot .socials{margin-top:0;justify-content:flex-start}
+.mob-menu.open a.mm{opacity:1;transform:none}
+.mob-menu a.mm:hover{color:var(--gold)}
 .mob-menu.open a:nth-child(2){transition-delay:.05s}.mob-menu.open a:nth-child(3){transition-delay:.1s}.mob-menu.open a:nth-child(4){transition-delay:.15s}.mob-menu.open a:nth-child(5){transition-delay:.2s}.mob-menu.open a:nth-child(6){transition-delay:.25s}.mob-menu.open a:nth-child(7){transition-delay:.3s}
 
 /* ---------- hero ---------- */
@@ -302,13 +308,6 @@ nav.sc{background:rgba(5,6,13,.82);backdrop-filter:blur(22px);-webkit-backdrop-f
 .chips{display:flex;flex-wrap:wrap;gap:.6rem;padding-top:1.8rem;min-height:9rem;align-content:flex-start}
 .chip{font-size:.95rem;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--cb2);border-radius:999px;padding:.6rem 1.15rem;opacity:0;transform:translateY(10px) scale(.96);animation:chipIn .5s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*45ms);transition:border-color var(--T),color var(--T)}
 .chip:hover{border-color:var(--gold);color:var(--gold)}
-.certs{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-top:2.8rem;padding:1.3rem 1.6rem;border:1px solid var(--cb);border-radius:var(--r);background:linear-gradient(90deg,rgba(210,177,94,.07),transparent)}
-.certs-n{display:flex;align-items:baseline;gap:.6rem}
-.certs-n b{font-weight:700;font-size:2.4rem;letter-spacing:-.04em;color:var(--gold);line-height:1}
-.certs-n span{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);max-width:12ch;line-height:1.4}
-.certs ul{list-style:none;display:flex;flex-wrap:wrap;gap:.45rem}
-.certs li{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);border:1px solid var(--cb);border-radius:3px;padding:.3rem .6rem;display:flex;align-items:center;gap:.4rem}
-.certs li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
 
 /* ---------- philosophy ---------- */
 .ph-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;margin-top:3.5rem;align-items:center}
@@ -424,13 +423,6 @@ footer p{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(-
 .gx-tip.on{opacity:1}
 
 /* ---------- hobbies ---------- */
-.hb-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-top:3.2rem}
-.hb{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.8rem 1rem 1.5rem;border:1px solid var(--cb);border-radius:18px;background:radial-gradient(90% 70% at 50% 0%,color-mix(in srgb,var(--c) 11%,transparent),transparent 70%),var(--card);transition:border-color var(--T),transform var(--T)}
-.hb:hover{border-color:color-mix(in srgb,var(--c) 50%,transparent);transform:translateY(-6px)}
-.hb-ic{width:74px;height:74px;color:var(--c);margin-bottom:1.1rem;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c) 35%,transparent))}
-.hb-ic svg{width:100%;height:100%;overflow:visible}
-.hb b{font-weight:700;font-size:1.02rem;letter-spacing:-.02em}
-.hb small{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:.35rem;line-height:1.5}
 .hb-arms{transform-origin:32px 24px;animation:dance 1.6s ease-in-out infinite}
 .hb-keys rect{transform-box:fill-box;transform-origin:top;animation:keyPress 2.4s ease-in-out infinite}
 .hb-keys rect:nth-child(2){animation-delay:.3s}.hb-keys rect:nth-child(3){animation-delay:.6s}.hb-keys rect:nth-child(4){animation-delay:.9s}.hb-keys rect:nth-child(5){animation-delay:1.2s}
@@ -439,7 +431,6 @@ footer p{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(-
 .hb-road{animation:road .8s linear infinite}
 .hb-br{transform-origin:32px 32px;animation:breath 5s ease-in-out infinite}
 .hb-br2{animation-delay:.4s}.hb-br3{animation-delay:.8s}
-.hb:hover .hb-reel{animation-duration:1.5s}.hb:hover .hb-arms{animation-duration:.7s}.hb:hover .hb-road{animation-duration:.3s}
 
 .soc{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--cb2);color:var(--mu);transition:all var(--T)}
 .soc svg{width:19px;height:19px}
@@ -447,9 +438,7 @@ footer p{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(-
 .socials{gap:.9rem}
 
 /* ---------- details sheet ---------- */
-dialog.sheet{position:fixed;margin:auto;border:1px solid var(--cb2);background:linear-gradient(180deg,#14162c,#0b0c1a);color:var(--text);border-radius:20px;padding:0;width:min(640px,calc(100vw - 32px));max-height:min(82vh,780px);box-shadow:0 40px 120px -20px rgba(0,0,0,.85);overflow:hidden}
 dialog.sheet::backdrop{background:rgba(3,3,10,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.sheet-in{padding:2.4rem 2.4rem 2.2rem;overflow:auto;max-height:min(82vh,780px)}
 .sheet-x{position:absolute;top:1rem;right:1rem;width:38px;height:38px;border-radius:50%;border:1px solid var(--cb2);display:grid;place-items:center;color:var(--mu);transition:all var(--T);z-index:2}
 .sheet-x:hover{color:var(--gold);border-color:var(--gold);transform:rotate(90deg)}
 .sheet .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
@@ -466,9 +455,161 @@ dialog.sheet::backdrop{background:rgba(3,3,10,.72);backdrop-filter:blur(8px);-we
 .sheet .kpis b{display:block;font-weight:600;font-size:1.3rem;letter-spacing:-.03em;color:var(--gold)}
 .sheet .kpis small{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 
+
+/* ---------- details sheet (full-screen layer so the custom cursor stays visible) ---------- */
+dialog.sheet{--c:var(--gold);position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:16px;border:0;background:transparent;color:var(--text);overflow:hidden}
+dialog.sheet[open]{display:grid;place-items:center}
+.sheet-box{position:relative;width:min(640px,100%);max-height:min(82vh,780px);border:1px solid color-mix(in srgb,var(--c) 38%,transparent);border-radius:20px;overflow:hidden;background:radial-gradient(120% 55% at 0% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 62%),linear-gradient(180deg,#14162c,#0b0c1a);box-shadow:0 40px 120px -20px rgba(0,0,0,.85),0 0 80px -30px color-mix(in srgb,var(--c) 60%,transparent)}
+.sheet-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 20%,transparent));z-index:3}
+.sheet-in{padding:2.4rem 2.4rem 2.2rem;overflow:auto;max-height:min(82vh,780px);overscroll-behavior:contain}
+.sheet-grab{display:none}
+@media(hover:hover) and (pointer:fine) and (min-width:769px){dialog.sheet,dialog.sheet *{cursor:none}}
+
+/* ---------- hobbies: expanding panels ---------- */
+.hb-grid{display:flex;gap:.7rem;height:300px;margin-top:3.2rem}
+.hb{position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.4rem .5rem;border:1px solid var(--cb);border-radius:18px;background:radial-gradient(90% 60% at 50% 0%,color-mix(in srgb,var(--c) 9%,transparent),transparent 70%),var(--card);color:var(--text);text-align:center;overflow:hidden;transition:flex .75s cubic-bezier(.2,.8,.2,1),border-color .5s,box-shadow .5s,background .5s}
+.hb.on{flex:2.7 1 0;border-color:color-mix(in srgb,var(--c) 55%,transparent);background:radial-gradient(100% 80% at 50% 15%,color-mix(in srgb,var(--c) 22%,transparent),transparent 70%),var(--card);box-shadow:0 26px 60px -30px color-mix(in srgb,var(--c) 75%,transparent)}
+.hb-ic{display:block;width:50px;height:50px;color:var(--c);transition:width .7s cubic-bezier(.2,.8,.2,1),height .7s cubic-bezier(.2,.8,.2,1),filter .5s;filter:saturate(.6) brightness(.85)}
+.hb.on .hb-ic{width:96px;height:96px;filter:drop-shadow(0 0 16px color-mix(in srgb,var(--c) 45%,transparent))}
+.hb-ic svg{width:100%;height:100%;overflow:visible}
+.hb:not(.on) .hb-ic *{animation-play-state:paused!important}
+.hb-t{display:flex;flex-direction:column;align-items:center;min-width:0}
+.hb b{font-weight:700;font-size:.9rem;letter-spacing:-.02em;line-height:1.25;transition:font-size .5s}
+.hb.on b{font-size:1.2rem}
+.hb small{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);max-height:0;opacity:0;overflow:hidden;transition:max-height .6s,opacity .5s .15s,margin .5s;white-space:nowrap}
+.hb.on small{max-height:3em;opacity:1;margin-top:.45rem}
+.hb:focus-visible{outline-offset:2px}
+.hb-dot{transform-box:fill-box;transform-origin:center;animation:dotPop 2.4s ease-in-out infinite}
+.hb-stroke{stroke-dasharray:40;stroke-dashoffset:40;animation:paint 2.8s ease-in-out infinite}
+.hb-page{transform-origin:32px 32px;animation:pageFlip 3.2s ease-in-out infinite}
+.hb-knight{animation:knight 3s cubic-bezier(.5,0,.3,1) infinite}
+
+/* ---------- certifications ---------- */
+.certs{display:grid;grid-template-columns:auto 1fr;gap:2.2rem;align-items:center;margin-top:3rem;padding:1.8rem 2rem;border:1px solid rgba(210,177,94,.24);border-radius:18px;background:linear-gradient(100deg,rgba(210,177,94,.1),var(--card) 42%)}
+.certs-n{display:flex;align-items:center;gap:1rem;padding-right:2.2rem;border-right:1px solid var(--cb2);height:100%}
+.certs-n b{font-weight:700;font-size:3.6rem;letter-spacing:-.05em;line-height:1;color:var(--gold);text-shadow:0 0 30px rgba(210,177,94,.35)}
+.certs-n span{font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text);line-height:1.6}
+.certs-l{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.certs-l li{position:relative;display:flex;align-items:center;gap:.65rem;font-size:.9rem;font-weight:500;line-height:1.3;color:var(--text);padding:.65rem .85rem;border:1px solid var(--cb2);border-radius:10px;background:rgba(255,255,255,.025);overflow:hidden;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s;transition-delay:calc(var(--i)*70ms + 150ms)}
+.certs.vis .certs-l li{opacity:1;transform:none}
+.certs-l li:hover{border-color:rgba(210,177,94,.55);transition-delay:0s}
+.certs-l li::after{content:"";position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(236,208,138,.16),transparent);transform:skewX(-20deg)}
+.certs.vis .certs-l li::after{animation:certShine 1.2s ease-out forwards;animation-delay:calc(var(--i)*120ms + .6s)}
+.certs-l li i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;color:var(--void);background:var(--gold);box-shadow:0 0 12px rgba(210,177,94,.45)}
+.certs-l li i svg{width:13px;height:13px}
+
+/* ---------- small text accent ---------- */
+.sdesc em.wt{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.15em;color:var(--gl)}
+
+/* ---------- touch feedback ---------- */
+.rp-host{overflow:hidden}
+.bo,.ph-n,.gx-lg,.ind span,.soc,.pill,.n-cta,.tool,.gl-c{position:relative}
+.ripple{position:absolute;border-radius:50%;pointer-events:none;z-index:6;background:radial-gradient(circle,color-mix(in srgb,var(--c,var(--gold)) 42%,transparent) 0%,transparent 70%);transform:translate(-50%,-50%) scale(0);animation:rip .65s ease-out forwards}
+.tap{transform:scale(.975)!important;transition:transform .12s ease!important}
+@media(hover:none){
+  .in-focus{border-color:color-mix(in srgb,var(--c,var(--gold)) 50%,transparent)!important;box-shadow:0 22px 50px -28px color-mix(in srgb,var(--c,var(--gold)) 75%,transparent)}
+  .in-focus.spot::after{opacity:1;--mx:50%;--my:0%}
+}
+
+/* ---------- mobile swipe rails + drawer ---------- */
+.dots{display:none}
+.mob-scrim{position:fixed;inset:0;z-index:390;background:rgba(3,3,10,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .45s}
+.mob-scrim.open{opacity:1;pointer-events:auto}
+
+
+/* ---------- contact form ---------- */
+.cf{display:grid;gap:1rem;margin-top:1.4rem}
+.cf-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cf-f{display:grid;gap:.45rem}
+.cf-f>span{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mu)}
+.cf input,.cf textarea{width:100%;font:inherit;font-size:1rem;color:var(--text);background:rgba(255,255,255,.035);border:1px solid var(--cb2);border-radius:10px;padding:.8rem .95rem;outline:none;transition:border-color .3s,background .3s,box-shadow .3s;resize:vertical;min-height:0}
+.cf textarea{min-height:110px;line-height:1.55}
+.cf input::placeholder,.cf textarea::placeholder{color:#6f6a60}
+.cf input:focus,.cf textarea:focus{border-color:var(--c,var(--gold));background:rgba(255,255,255,.055);box-shadow:0 0 0 3px color-mix(in srgb,var(--c,var(--gold)) 18%,transparent)}
+.cf .bad{border-color:#f87171!important}
+.cf-chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.cf-chip{font-size:.84rem;font-weight:500;color:var(--mu);border:1px solid var(--cb2);border-radius:999px;padding:.45rem .9rem;transition:all .3s}
+.cf-chip:hover{color:var(--text);border-color:rgba(210,177,94,.5)}
+.cf-chip.on{color:var(--void);background:var(--gold);border-color:var(--gold)}
+.cf-err{min-height:1.2em;font-size:.86rem;color:#fca5a5;margin:-.3rem 0 0!important}
+.cf-err a{color:var(--gl)}
+.cf-send{justify-content:center;width:100%;border:0;font:inherit;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+.cf-send[disabled]{opacity:.7;pointer-events:none}
+.cf-send.busy .arr{display:inline-block;animation:spin 1s linear infinite}
+.cf-note{font-size:.82rem!important;color:var(--dim)!important;text-align:center;margin-top:-.2rem!important;line-height:1.5!important}
+.cf-ok{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;padding:1.6rem 0 .6rem;animation:sheetIn .6s cubic-bezier(.2,.8,.2,1)}
+.cf-ok svg{width:74px;height:74px;color:#34d399}
+.cf-ok svg circle{stroke-dasharray:190;stroke-dashoffset:190;animation:okDraw .8s ease-out forwards}
+.cf-ok svg path{stroke-dasharray:40;stroke-dashoffset:40;animation:okDraw .5s ease-out .6s forwards}
+.cf-ok b{font-size:1.3rem;font-weight:700;letter-spacing:-.02em}
+.cf-ok p{margin:0!important;color:var(--mu)!important;font-size:.95rem!important;max-width:36ch}
+
+/* ---------- Madhav AI chat ---------- */
+.bot-fab{position:fixed;right:max(20px,env(safe-area-inset-right,0px) + 16px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:600;width:64px;height:64px;border-radius:50%;padding:0;background:#0d1622;border:1px solid rgba(210,177,94,.55);box-shadow:0 14px 40px -10px rgba(0,0,0,.8),0 0 30px -6px rgba(90,168,255,.45);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .4s;animation:fabFloat 4s ease-in-out infinite}
+.bot-fab img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;transition:opacity .45s}
+.bot-fab .bot-aw{opacity:0}
+.bot-fab:hover .bot-aw,.bot-fab.awake .bot-aw{opacity:1}
+.bot-fab:hover{transform:scale(1.08);box-shadow:0 18px 44px -10px rgba(0,0,0,.8),0 0 40px -4px rgba(90,168,255,.7)}
+.bot-ring{position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(90,168,255,.5);animation:orbPulse 2.6s ease-out infinite;pointer-events:none}
+.bot-hint{position:absolute;right:calc(100% + 12px);top:50%;transform:translate(8px,-50%);white-space:nowrap;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--void);background:var(--gl);padding:.5rem .8rem;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;box-shadow:0 10px 30px -10px rgba(0,0,0,.7)}
+.bot-hint::after{content:"";position:absolute;left:100%;top:50%;margin-top:-5px;border:5px solid transparent;border-left-color:var(--gl)}
+.bot-hint.on,.bot-fab:hover .bot-hint{opacity:1;transform:translate(0,-50%)}
+.bot-fab.open{transform:scale(.85);opacity:0;pointer-events:none}
+.bot-panel{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:610;width:min(390px,calc(100vw - 32px));height:min(620px,calc(100vh - 120px));display:flex;flex-direction:column;border:1px solid rgba(90,168,255,.3);border-radius:22px;overflow:hidden;background:radial-gradient(120% 40% at 100% 0%,rgba(90,168,255,.14),transparent 60%),linear-gradient(180deg,#121528,#090a16);box-shadow:0 40px 100px -20px rgba(0,0,0,.9),0 0 60px -30px rgba(90,168,255,.6);transform-origin:bottom right;animation:botIn .5s cubic-bezier(.2,.8,.2,1)}
+.bot-panel[hidden]{display:none}
+.bot-panel.closing{animation:botOut .3s ease-in forwards}
+.bot-head{display:flex;align-items:center;gap:.7rem;padding:.9rem 1rem;border-bottom:1px solid var(--cb)}
+.bot-av{position:relative;width:40px;height:40px;flex-shrink:0}
+.bot-av img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:1px solid rgba(90,168,255,.5)}
+.bot-av::after{content:"";position:absolute;right:0;bottom:0;width:10px;height:10px;border-radius:50%;background:#34d399;border:2px solid #121528}
+.bot-id{flex:1;min-width:0}
+.bot-id b{display:block;font-weight:700;font-size:1rem;letter-spacing:-.02em}
+.bot-id small{display:flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bot-id small i{width:6px;height:6px;border-radius:50%;background:#34d399;flex-shrink:0;animation:blinkDot 1.8s infinite}
+.bot-human{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(210,177,94,.45);border-radius:999px;padding:.4rem .7rem;white-space:nowrap;transition:all .3s}
+.bot-human:hover{background:var(--gold);color:var(--void)}
+.bot-x{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--mu);border:1px solid var(--cb2);flex-shrink:0;transition:all .3s}
+.bot-x:hover{color:var(--text);transform:rotate(90deg)}
+.bot-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:1rem;display:flex;flex-direction:column;gap:.7rem;scroll-behavior:smooth}
+.msg{max-width:86%;font-size:.93rem;line-height:1.55;padding:.7rem .9rem;border-radius:16px;animation:msgIn .45s cubic-bezier(.2,.8,.2,1) both}
+.msg.b{align-self:flex-start;background:rgba(255,255,255,.05);border:1px solid var(--cb);border-bottom-left-radius:5px;color:#e6e0d4}
+.msg.u{align-self:flex-end;background:linear-gradient(135deg,var(--gold),#b8943f);color:var(--void);font-weight:500;border-bottom-right-radius:5px}
+.msg b{color:var(--text)}
+.msg ul{margin:.4rem 0 0 1rem;padding:0}
+.msg li{margin:.15rem 0}
+.msg .act{display:inline-flex;margin-top:.55rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);border-bottom:1px solid currentColor;padding-bottom:2px}
+.msg.card{max-width:100%;width:100%;padding:1rem;background:rgba(210,177,94,.05);border-color:rgba(210,177,94,.25)}
+.msg.card .cf{margin-top:.2rem;gap:.75rem}
+.msg.card .cf-row{grid-template-columns:1fr}
+.msg.card .cf textarea{min-height:84px}
+.msg.card .cf input,.msg.card .cf textarea{font-size:16px;padding:.65rem .8rem}
+.msg.card .cf-chips{gap:.35rem}.msg.card .cf-chip{font-size:.76rem;padding:.35rem .7rem}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:.8rem .9rem;border-radius:16px;border-bottom-left-radius:5px;background:rgba(255,255,255,.05);border:1px solid var(--cb)}
+.typing i{width:6px;height:6px;border-radius:50%;background:#8cc4ff;animation:typeDot 1.2s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.bot-chips{display:flex;gap:.4rem;overflow-x:auto;padding:.1rem 1rem .6rem;scrollbar-width:none}
+.bot-chips::-webkit-scrollbar{display:none}
+.bot-chips button{flex-shrink:0;font-size:.8rem;font-weight:500;color:var(--text);border:1px solid rgba(90,168,255,.35);background:rgba(90,168,255,.07);border-radius:999px;padding:.45rem .8rem;transition:all .3s;animation:msgIn .4s both}
+.bot-chips button:hover{background:rgba(90,168,255,.2);border-color:#5aa8ff}
+.bot-chips button.gold{border-color:rgba(210,177,94,.5);background:rgba(210,177,94,.1);color:var(--gl)}
+.bot-in{display:flex;gap:.5rem;padding:.7rem .8rem;border-top:1px solid var(--cb);background:rgba(0,0,0,.2)}
+.bot-in input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--cb2);border-radius:999px;padding:.65rem 1rem;outline:none;transition:border-color .3s}
+.bot-in input:focus{border-color:#5aa8ff}
+.bot-in button{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--void);background:var(--gold);flex-shrink:0;transition:transform .3s}
+.bot-in button:hover{transform:scale(1.08)}
+.bot-foot{font-size:.62rem;color:var(--dim);text-align:center;padding:0 1rem .6rem;background:rgba(0,0,0,.2)}
+@media(max-width:768px){
+  .bot-fab{width:56px;height:56px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .bot-hint{display:none}
+  .bot-panel{right:0;left:0;bottom:0;width:100%;height:calc(100% - 56px);height:calc(100dvh - 56px);border-radius:22px 22px 0 0;border-bottom:0;transform-origin:bottom center}
+  .bot-foot{padding-bottom:calc(.6rem + env(safe-area-inset-bottom,0px))}
+  .cf-row{grid-template-columns:1fr}
+  .cf input,.cf textarea{font-size:16px}
+}
+@media(hover:hover) and (pointer:fine) and (min-width:769px){.bot-panel input,.cf input,.cf textarea{cursor:none}}
+
 /* ---------- sheet accent + open card ---------- */
-dialog.sheet{--c:var(--gold);border-color:color-mix(in srgb,var(--c) 38%,transparent);background:radial-gradient(120% 55% at 0% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 62%),linear-gradient(180deg,#14162c,#0b0c1a);box-shadow:0 40px 120px -20px rgba(0,0,0,.85),0 0 80px -30px color-mix(in srgb,var(--c) 60%,transparent)}
-dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 20%,transparent));z-index:3}
 .sheet .k{color:var(--c)}.sheet .kpis b{color:var(--c)}.sheet li::before{background:var(--c)}
 .sheet .kpis div{border-color:color-mix(in srgb,var(--c) 22%,transparent)}
 .sheet-x:hover{color:var(--c);border-color:var(--c)}
@@ -514,6 +655,18 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
 @keyframes trek{to{stroke-dashoffset:-18}}
 @keyframes road{to{stroke-dashoffset:-12}}
 @keyframes breath{0%,100%{transform:scale(.82)}50%{transform:scale(1.06)}}
+@keyframes dotPop{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+@keyframes paint{0%{stroke-dashoffset:40}50%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-40}}
+@keyframes pageFlip{0%,35%{transform:scaleX(1)}50%{transform:scaleX(0)}65%,100%{transform:scaleX(-1)}}
+@keyframes knight{0%,20%{transform:translate(0,0)}35%{transform:translate(0,-10px)}50%{transform:translate(8px,-10px)}62%,82%{transform:translate(8px,0)}100%{transform:translate(0,0)}}
+@keyframes certShine{to{left:140%}}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+@keyframes okDraw{to{stroke-dashoffset:0}}
+@keyframes fabFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes botIn{from{opacity:0;transform:translateY(20px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes botOut{to{opacity:0;transform:translateY(20px) scale(.94)}}
+@keyframes msgIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes typeDot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
 /* ---------- responsive ---------- */
@@ -532,7 +685,6 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .cs-grid,.vn-grid,.ln-grid{grid-template-columns:1fr 1fr}
   .vl-grid{grid-template-columns:1fr 1fr}
-  .hb-grid{grid-template-columns:repeat(3,1fr)}
   .vn-card{min-height:300px}
   .isha-in{grid-template-columns:1fr;gap:2.5rem}
   .ph-grid{grid-template-columns:1fr;gap:2.5rem}
@@ -555,7 +707,30 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
   .pr-n{top:-.1rem;left:-2.6rem}.pr-step b{margin-top:0}
   .cs-track .cs-card{width:290px}
   .gx{height:420px}
-  .hb-grid{grid-template-columns:1fr 1fr;gap:.7rem}
+  dialog.sheet{padding:0}
+  dialog.sheet[open]{place-items:end center}
+  .sheet-box{width:100%;max-height:88vh;border-radius:22px 22px 0 0;border-bottom:0}
+  .sheet-in{max-height:88vh;padding:2.1rem 1.4rem calc(1.8rem + env(safe-area-inset-bottom,0px))}
+  .sheet-grab{display:block;position:absolute;top:8px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:2px;background:var(--cb2);z-index:4}
+  .hb-grid{display:grid;grid-template-columns:repeat(3,1fr);height:auto;gap:.6rem}
+  .hb{padding:1.2rem .4rem;gap:.6rem;min-height:132px}
+  .hb.on{box-shadow:0 18px 40px -24px color-mix(in srgb,var(--c) 80%,transparent)}
+  .hb-ic{width:40px;height:40px}.hb.on .hb-ic{width:52px;height:52px}
+  .hb b{font-size:.78rem}.hb.on b{font-size:.84rem}
+  .hb small{font-size:.5rem;letter-spacing:.06em;white-space:normal}
+  .certs{grid-template-columns:1fr;gap:1.3rem;padding:1.4rem 1.2rem}
+  .certs-n{border-right:0;border-bottom:1px solid var(--cb2);padding:0 0 1.1rem}
+  .certs-n b{font-size:2.8rem}
+  .certs-l{grid-template-columns:1fr 1fr;gap:.5rem}
+  .certs-l li{font-size:.78rem;padding:.55rem .6rem;gap:.5rem}
+  .certs-l li i{width:20px;height:20px}
+  .vl-grid,.vn-grid,.ln-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.9rem;margin-left:calc(var(--pad)*-1);margin-right:calc(var(--pad)*-1);padding:.4rem var(--pad) 1rem;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-padding:0 var(--pad)}
+  .vl-grid::-webkit-scrollbar,.vn-grid::-webkit-scrollbar,.ln-grid::-webkit-scrollbar{display:none}
+  .vl-grid>*,.vn-grid>*,.ln-grid>*{flex:0 0 84%;scroll-snap-align:center}
+  .vl{padding:1.6rem 1.4rem}.vl h3{font-size:1.15rem}.vl p{font-size:.92rem}
+  .dots{display:flex;justify-content:center;gap:6px;margin-top:.3rem}
+  .dots button{width:7px;height:7px;padding:0;border-radius:4px;background:var(--cb2);transition:width .35s,background .35s}
+  .dots button.on{width:24px;background:var(--gold)}
   .vn-card{min-height:0}
   .glance{gap:.7rem}.gl-c{padding:1.4rem}
   .gl-c.feat{flex-direction:column;align-items:flex-start}.gl-spark{width:100%;max-width:none}
@@ -565,10 +740,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
   #isha{padding:5rem var(--pad)}
   #mcanv{width:280px;height:280px}
   .ph-stage{padding:2rem 1.6rem 1.8rem}
-  .sheet-in{padding:2rem 1.4rem 1.6rem}
   .sheet .kpis{grid-template-columns:repeat(2,1fr)}
-  dialog.sheet{margin:auto auto 0;width:100%;max-width:100%;border-radius:20px 20px 0 0;max-height:88vh}
-  .sheet-in{max-height:88vh}
   footer{flex-direction:column;text-align:center}
 }
 @media(max-width:420px){.h-name{font-size:3rem}.stitle{font-size:2rem}.gl-v{font-size:2.1rem}}
@@ -607,15 +779,25 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
 </svg>
 
 <!-- MOBILE MENU -->
-<div class="mob-menu" id="mobMenu">
-  <a href="#about" onclick="closeMob()">About</a>
-  <a href="#value" onclick="closeMob()">Why me</a>
-  <a href="#journey" onclick="closeMob()">Journey</a>
-  <a href="#cases" onclick="closeMob()">Results</a>
-  <a href="#ventures" onclick="closeMob()">Ventures</a>
-  <a href="#isha" onclick="closeMob()">Inner Journey</a>
-  <a href="#skills" onclick="closeMob()">Expertise</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+<div class="mob-scrim" id="mobScrim"></div>
+<div class="mob-menu" id="mobMenu" role="navigation" aria-label="Mobile">
+  <a class="mm" href="#about" onclick="closeMob()">About</a>
+  <a class="mm" href="#value" onclick="closeMob()">Why me</a>
+  <a class="mm" href="#journey" onclick="closeMob()">Journey</a>
+  <a class="mm" href="#cases" onclick="closeMob()">Results</a>
+  <a class="mm" href="#ventures" onclick="closeMob()">Ventures</a>
+  <a class="mm" href="#isha" onclick="closeMob()">Inner Journey</a>
+  <a class="mm" href="#skills" onclick="closeMob()">Expertise</a>
+  <a class="mm" href="#contact" onclick="closeMob()">Contact</a>
+  <div class="mm-foot">
+    <a href="#contact" class="bp" data-more="m-contact" onclick="closeMob()">Let's talk <span class="arr">→</span></a>
+    <div class="socials">
+    <a href="https://www.linkedin.com/in/madhav-bhattarai811/" class="soc" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    <a href="https://www.instagram.com/_madhav_bhattarai/" class="soc" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="https://www.facebook.com/madhab.bhattarai.12" class="soc" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg></a>
+    <a href="#ventures" class="soc" aria-label="CogniMorph" title="CogniMorph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2.6" fill="currentColor"/><circle cx="5" cy="6" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="6" cy="19" r="1.8"/><circle cx="18" cy="18" r="1.8"/><path d="M6.4 7.2 10 10.3M17.6 7.2 14 10.3M7.3 17.8l3-3.8M16.7 16.8l-2.8-2.9"/></svg></a>
+    </div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -631,7 +813,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
       <li><a href="#isha">Inner</a></li>
       <li><a href="#skills">Expertise</a></li>
     </ul>
-    <a href="#contact" class="n-cta">Let's talk</a>
+    <a href="#contact" class="n-cta" data-more="m-contact">Let's talk</a>
     <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -689,7 +871,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
 <!-- ===== TRUST MARQUEE ===== -->
 <div class="marq" aria-label="Platforms and credentials">
   <div class="marq-track">
-    <span class="marq-item"><em>Google</em> Partner Trained</span><span class="marq-item">Meta Ads</span><span class="marq-item">TikTok Spark</span><span class="marq-item">LinkedIn Lead Gen</span><span class="marq-item">Snapchat</span><span class="marq-item">DV360 · CM360</span><span class="marq-item">GA4 · GTM</span><span class="marq-item">Looker Studio</span><span class="marq-item">HubSpot</span><span class="marq-item"><em>Agentic</em> AI</span><span class="marq-item">Isha Foundation</span>
+    <span class="marq-item"><em>Google</em> Partner Trained</span><span class="marq-item">Meta Ads</span><span class="marq-item">TikTok Spark</span><span class="marq-item">LinkedIn Lead Gen</span><span class="marq-item">Snapchat</span><span class="marq-item">DV360 · CM360</span><span class="marq-item">GA4 · GTM</span><span class="marq-item">Looker Studio</span><span class="marq-item">HubSpot</span><span class="marq-item"><em>Agentic</em> AI</span>
   </div>
 </div>
 
@@ -700,7 +882,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
       <div class="ab-sig"><div class="ab-ph"><img src="assets/madhav.webp" alt="Portrait of Madhav Bhattarai" width="74" height="74" loading="lazy"></div><div><b>Madhav Bhattarai</b><small>Sr. Performance Marketing · Dubai</small></div></div>
       <p class="slbl">About</p>
       <h2 class="stitle">Where <em>code</em> meets consciousness</h2>
-      <p class="sdesc">A Computer Science graduate who turned into a <span class="hl">performance marketer</span>. I build <span class="hl">startups</span> between campaigns and meditate between dashboards.</p>
+      <p class="sdesc">A Computer Science graduate who turned into a <span class="hl">performance marketer</span>. I build <span class="hl">startups</span> for the sheer joy of the game, and I meditate to remember that it <em class="wt">is</em> a game.</p>
       <div class="ab-pills">
         <span class="pill" style="--c:#4285F4"><i></i>Google Partner trained</span>
         <span class="pill" style="--c:var(--sp)"><i></i>Isha Foundation</span>
@@ -711,7 +893,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
         <p class="k">My story</p><h3>Where code meets consciousness</h3>
         <p>A Computer Science graduate turned Senior Performance Marketing Manager, with 7+ years of work spanning 8 countries, from Kathmandu to Dubai.</p>
         <p>I've scaled SaaS platforms globally, served Sadhguru's Isha Foundation, trained with Google as a certified partner, and managed $10M+ in paid media for 60+ clients across my career.</p>
-        <p>Between campaigns, I build startups. Between dashboards, I meditate.</p>
+        <p>I build startups for the sheer joy of the game, and I meditate to remember that it is a game.</p>
       </template>
     </div>
     <div class="glance">
@@ -735,7 +917,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
 <!-- ===== VALUE ===== -->
 <div class="band"><section class="sec" id="value">
   <div class="sec-head rev">
-    <div><p class="slbl">For founders & CEOs</p><h2 class="stitle">Why leaders <em>hire</em> me</h2></div>
+    <div><p class="slbl">For founders & CEOs</p><h2 class="stitle">Growth is a <em>dance,</em> not a march</h2></div>
     <p class="sdesc" style="margin-top:0">Growth you can see on the P&L.</p>
   </div>
   <div class="vl-grid">
@@ -840,7 +1022,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
         <div class="st-card"><span class="st-star">★ Now</span><div class="st-top"><span class="st-ic"><svg><use href="#i-city"/></svg></span><span class="st-yr">Nov 2024–Now</span><span class="st-cc">AE</span></div>
           <h3>Hashtag Agency</h3><p class="st-role">Senior Performance Marketing Manager</p><p class="st-line">GCC's biggest brands.</p>
           <button class="more-btn" data-more="j7">Details <span class="pl">+</span></button></div>
-        <template id="j7"><p class="k">Nov 2024–Present · Dubai Studio City, UAE</p><h3>Hashtag Social Media Agency</h3><p class="sub">Senior Performance Marketing Manager</p><p>Leading performance marketing for GCC's biggest brands in real estate, hospitality, luxury and tech. Full-funnel strategy across Meta, Google, TikTok, LinkedIn and Snapchat, and mentoring a team. This is where everything converges.</p><div class="tags"><span>GCC Brands</span><span>5 Platforms</span><span>Team Lead</span><span>Full Funnel</span></div></template>
+        <template id="j7"><p class="k">Nov 2024–Present · Dubai Studio City, UAE</p><h3>Hashtag Social Media Agency</h3><p class="sub">Senior Performance Marketing Manager</p><p>Leading performance marketing for GCC's biggest brands in real estate, hospitality, luxury and tech. Full-funnel strategy across Meta, Google, TikTok, LinkedIn and Snapchat, and mentoring a team. Some call it a job. I suspect it is the universe running a campaign for itself, and I just happen to be managing the budget.</p><div class="tags"><span>GCC Brands</span><span>5 Platforms</span><span>Team Lead</span><span>Full Funnel</span></div></template>
       </article>
     </div>
     <div class="jr-hint" id="jrHint"><i></i>Keep scrolling</div>
@@ -973,15 +1155,18 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
 <section class="sec" id="life">
   <div class="sec-head rev">
     <div><p class="slbl">Off the clock</p><h2 class="stitle">What keeps me <em>human</em></h2></div>
-    <p class="sdesc" style="margin-top:0">The rhythm behind the work.</p>
+    <p class="sdesc" style="margin-top:0">The rhythm behind the work. Tap or hover to play.</p>
   </div>
-  <div class="hb-grid">
-    <div class="hb rev" style="--c:var(--rose)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="12" r="5"/><path d="M32 18v18M32 36l-8 16M32 36l9 15"/><g class="hb-arms"><path d="M32 24 20 16M32 24l13-6"/></g></svg></div><b>Dancing</b><small>Rhythm over rules</small></div>
-    <div class="hb rev rd1" style="--c:var(--gl)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="16" width="48" height="32" rx="3"/><g class="hb-keys"><rect x="11" y="19" width="8" height="26" rx="1"/><rect x="20" y="19" width="8" height="26" rx="1"/><rect x="29" y="19" width="8" height="26" rx="1"/><rect x="38" y="19" width="8" height="26" rx="1"/><rect x="47" y="19" width="6" height="26" rx="1"/></g><g fill="currentColor" stroke="none"><rect x="17" y="19" width="5" height="15" rx="1"/><rect x="26" y="19" width="5" height="15" rx="1"/><rect x="44" y="19" width="5" height="15" rx="1"/></g></svg></div><b>Playing piano</b><small>Keys that calm</small></div>
-    <div class="hb rev rd2" style="--c:var(--az)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><g class="hb-reel"><circle cx="32" cy="30" r="20"/><circle cx="32" cy="30" r="3.5" fill="currentColor"/><circle cx="32" cy="18" r="5"/><circle cx="43.4" cy="26.3" r="5"/><circle cx="39" cy="39.7" r="5"/><circle cx="25" cy="39.7" r="5"/><circle cx="20.6" cy="26.3" r="5"/></g><path d="M44 48c6 1 10 3 12 6" stroke-linecap="round"/></svg></div><b>Movies</b><small>Stories that stay</small></div>
-    <div class="hb rev rd3" style="--c:var(--sage)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 54 22 22l10 14 8-10 20 28z" fill="currentColor" fill-opacity=".1"/><path d="M17 31l5-9 5 7" opacity=".6"/><path class="hb-path" d="M14 54c6-4 10-6 14-12s8-8 12-14"/><path d="M40 28V14l8 3-8 3"/></svg></div><b>Solo trek</b><small>Mountains, alone</small></div>
-    <div class="hb rev rd4" style="--c:var(--sp)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M26 12 10 56M38 12l16 44" /><path class="hb-road" d="M32 14v42" stroke-dasharray="5 7"/><circle cx="50" cy="14" r="5" opacity=".6"/></svg></div><b>Long drive</b><small>Open roads, clear head</small></div>
-    <div class="hb rev rd5" style="--c:var(--gold)"><div class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle class="hb-br hb-br3" cx="32" cy="32" r="26" opacity=".25"/><circle class="hb-br hb-br2" cx="32" cy="32" r="18" opacity=".5"/><circle class="hb-br" cx="32" cy="32" r="10"/><circle cx="32" cy="32" r="3" fill="currentColor"/></svg></div><b>Silence</b><small>Going back to the self</small></div>
+  <div class="hb-grid" id="hbGrid">
+    <button type="button" class="hb" style="--c:var(--rose)"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="12" r="5"/><path d="M32 18v18M32 36l-8 16M32 36l9 15"/><g class="hb-arms"><path d="M32 24 20 16M32 24l13-6"/></g></svg></span><span class="hb-t"><b>Dancing</b><small>Rhythm over rules</small></span></button>
+    <button type="button" class="hb" style="--c:var(--gl)"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="16" width="48" height="32" rx="3"/><g class="hb-keys"><rect x="11" y="19" width="8" height="26" rx="1"/><rect x="20" y="19" width="8" height="26" rx="1"/><rect x="29" y="19" width="8" height="26" rx="1"/><rect x="38" y="19" width="8" height="26" rx="1"/><rect x="47" y="19" width="6" height="26" rx="1"/></g><g fill="currentColor" stroke="none"><rect x="17" y="19" width="5" height="15" rx="1"/><rect x="26" y="19" width="5" height="15" rx="1"/><rect x="44" y="19" width="5" height="15" rx="1"/></g></svg></span><span class="hb-t"><b>Playing piano</b><small>Keys that calm</small></span></button>
+    <button type="button" class="hb" style="--c:#fb923c"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M32 8C17 8 6 18 6 31c0 11 8 17 15 17 5 0 6-4 9-4s4 3 4 7c0 3 3 5 6 5 13 0 19-11 19-22C59 18 48 8 32 8z" fill="currentColor" fill-opacity=".1"/><circle class="hb-dot" cx="20" cy="26" r="4" fill="#ee7fa6" stroke="none"/><circle class="hb-dot" cx="32" cy="18" r="4" fill="#5aa8ff" stroke="none" style="animation-delay:.3s"/><circle class="hb-dot" cx="44" cy="24" r="4" fill="#5eead4" stroke="none" style="animation-delay:.6s"/><circle class="hb-dot" cx="46" cy="37" r="4" fill="#ecd08a" stroke="none" style="animation-delay:.9s"/><path class="hb-stroke" d="M14 58c8-6 18-4 26-10"/></svg></span><span class="hb-t"><b>Painting</b><small>Colour without rules</small></span></button>
+    <button type="button" class="hb" style="--c:#a78bfa"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M32 16c-6-5-15-6-24-4v36c9-2 18-1 24 4 6-5 15-6 24-4V12c-9-2-18-1-24 4z" fill="currentColor" fill-opacity=".08"/><path d="M32 16v36"/><path class="hb-page" d="M32 17c5-4 12-5 19-4v34c-7-1-14 0-19 4z" fill="currentColor" fill-opacity=".18"/><path d="M14 22h11M14 29h11M14 36h9" opacity=".55" stroke-linecap="round"/></svg></span><span class="hb-t"><b>Reading</b><small>Other minds, borrowed</small></span></button>
+    <button type="button" class="hb" style="--c:var(--az)"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><g class="hb-reel"><circle cx="32" cy="30" r="20"/><circle cx="32" cy="30" r="3.5" fill="currentColor"/><circle cx="32" cy="18" r="5"/><circle cx="43.4" cy="26.3" r="5"/><circle cx="39" cy="39.7" r="5"/><circle cx="25" cy="39.7" r="5"/><circle cx="20.6" cy="26.3" r="5"/></g><path d="M44 48c6 1 10 3 12 6" stroke-linecap="round"/></svg></span><span class="hb-t"><b>Movies</b><small>Stories that stay</small></span></button>
+    <button type="button" class="hb" style="--c:#e7e1d5"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 52h48" opacity=".4" stroke-linecap="round"/><g class="hb-knight"><path d="M22 50h22l-2-6c2-6 2-12-1-18-3-5-8-8-14-9l-2-4-3 5-6 9c-1 2 0 4 2 4l5-1c2 0 3 1 3 3l-4 11z" fill="currentColor" fill-opacity=".15"/><circle cx="26" cy="22" r="1.6" fill="currentColor"/></g><path d="M50 26v-8M46 22h8" stroke-linecap="round" opacity=".6"/></svg></span><span class="hb-t"><b>Chess</b><small>Think three moves ahead</small></span></button>
+    <button type="button" class="hb" style="--c:var(--sage)"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 54 22 22l10 14 8-10 20 28z" fill="currentColor" fill-opacity=".1"/><path d="M17 31l5-9 5 7" opacity=".6"/><path class="hb-path" d="M14 54c6-4 10-6 14-12s8-8 12-14"/><path d="M40 28V14l8 3-8 3"/></svg></span><span class="hb-t"><b>Solo trek</b><small>Mountains, alone</small></span></button>
+    <button type="button" class="hb" style="--c:var(--sp)"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M26 12 10 56M38 12l16 44" /><path class="hb-road" d="M32 14v42" stroke-dasharray="5 7"/><circle cx="50" cy="14" r="5" opacity=".6"/></svg></span><span class="hb-t"><b>Long drive</b><small>Open roads, clear head</small></span></button>
+    <button type="button" class="hb" style="--c:var(--gold)"><span class="hb-ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle class="hb-br hb-br3" cx="32" cy="32" r="26" opacity=".25"/><circle class="hb-br hb-br2" cx="32" cy="32" r="18" opacity=".5"/><circle class="hb-br" cx="32" cy="32" r="10"/><circle cx="32" cy="32" r="3" fill="currentColor"/></svg></span><span class="hb-t"><b>Silence</b><small>Going back to the self</small></span></button>
   </div>
 </section>
 
@@ -1001,9 +1186,19 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
     <svg class="gx-rings" id="gxRings" aria-hidden="true"></svg>
     <div class="gx-core"><span class="gx-core-g"></span><b>MB</b><small>Full-funnel growth</small></div>
   </div>
-  <div class="certs rev">
-    <div class="certs-n"><b>9</b><span>Google & industry certifications</span></div>
-    <ul><li>Ads Search</li><li>Ads Display</li><li>Ads Video</li><li>Ads Shopping</li><li>AI-Powered Performance</li><li>Google Analytics</li><li>Privacy-Safe Ads</li><li>Tech Support</li><li>Salesforce · Aleph</li></ul>
+  <div class="certs rev" id="certs">
+    <div class="certs-n"><b>9</b><span>Google & industry<br>certifications</span></div>
+    <ul class="certs-l">
+      <li style="--i:0"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Google Ads Search</li>
+      <li style="--i:1"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Google Ads Display</li>
+      <li style="--i:2"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Google Ads Video</li>
+      <li style="--i:3"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Google Ads Shopping</li>
+      <li style="--i:4"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>AI-Powered Performance</li>
+      <li style="--i:5"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Google Analytics</li>
+      <li style="--i:6"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Privacy-Safe Ads</li>
+      <li style="--i:7"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Tech Support Fundamentals</li>
+      <li style="--i:8"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></i>Salesforce · Aleph</li>
+    </ul>
   </div>
 </section>
 
@@ -1068,7 +1263,7 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
     <h2 class="stitle">Let's <em>build</em> something remarkable</h2>
     <a href="mailto:hello@madhavbhattarai.com" class="ct-email">hello@madhavbhattarai.com</a>
     <div class="ct-actions">
-      <a href="mailto:hello@madhavbhattarai.com?subject=Let%27s%20talk%20growth" class="bp mag">Start a conversation <span class="arr">→</span></a>
+      <button type="button" class="bp mag" data-more="m-contact">Start a conversation <span class="arr">→</span></button>
       <button type="button" class="bo mag copy-btn" id="copyEmail" data-email="hello@madhavbhattarai.com">Copy email</button>
     </div>
     <div class="socials">
@@ -1085,10 +1280,66 @@ dialog.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:3p
   <p>CogniMorph · Hello5 · QuickHire · RiseSpace</p>
 </footer>
 
+<template id="m-contact">
+  <p class="k">Let's talk</p><h3>Start a conversation</h3>
+  <p class="sub">A few lines is plenty. It goes straight to Madhav's inbox.</p>
+  <form class="cf" novalidate>
+      <input type="text" name="_honey" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cf-row">
+        <label class="cf-f"><span>Your name</span><input name="name" type="text" autocomplete="name" required placeholder="Jane Doe"></label>
+        <label class="cf-f"><span>Email</span><input name="email" type="email" autocomplete="email" inputmode="email" required placeholder="jane@company.com"></label>
+      </div>
+      <div class="cf-f"><span>What's it about?</span>
+        <div class="cf-chips" role="group" aria-label="Topic"><button type="button" class="cf-chip on">Growth marketing</button><button type="button" class="cf-chip">AI automation</button><button type="button" class="cf-chip">Collaboration</button><button type="button" class="cf-chip">Just saying hi</button></div>
+      </div>
+      <label class="cf-f"><span>Message</span><textarea name="message" rows="4" required placeholder="Tell me a little about your brand, goals or idea…"></textarea></label>
+      <p class="cf-err" role="alert"></p>
+      <button type="submit" class="bp cf-send"><span class="cf-lbl">Send message</span> <span class="arr">→</span></button>
+      <p class="cf-note">Madhav replies within 1 day, unless it's a weekend or he's meditating in the Himalayas.</p>
+    </form>
+</template>
+<template id="cf-tpl"><form class="cf" novalidate>
+      <input type="text" name="_honey" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cf-row">
+        <label class="cf-f"><span>Your name</span><input name="name" type="text" autocomplete="name" required placeholder="Jane Doe"></label>
+        <label class="cf-f"><span>Email</span><input name="email" type="email" autocomplete="email" inputmode="email" required placeholder="jane@company.com"></label>
+      </div>
+      <div class="cf-f"><span>What's it about?</span>
+        <div class="cf-chips" role="group" aria-label="Topic"><button type="button" class="cf-chip on">Growth marketing</button><button type="button" class="cf-chip">AI automation</button><button type="button" class="cf-chip">Collaboration</button><button type="button" class="cf-chip">Just saying hi</button></div>
+      </div>
+      <label class="cf-f"><span>Message</span><textarea name="message" rows="4" required placeholder="Tell me a little about your brand, goals or idea…"></textarea></label>
+      <p class="cf-err" role="alert"></p>
+      <button type="submit" class="bp cf-send"><span class="cf-lbl">Send message</span> <span class="arr">→</span></button>
+      <p class="cf-note">Madhav replies within 1 day, unless it's a weekend or he's meditating in the Himalayas.</p>
+    </form></template>
+
+<!-- ===== MADHAV AI CHAT ===== -->
+<button type="button" class="bot-fab" id="botFab" aria-label="Chat with Madhav AI" aria-expanded="false" aria-controls="botPanel">
+  <span class="bot-ring"></span>
+  <img class="bot-sl" src="assets/bot-sleep.webp" alt="" width="56" height="56">
+  <img class="bot-aw" src="assets/bot-awake.webp" alt="" width="56" height="56">
+  <span class="bot-hint" id="botHint">Ask Madhav AI</span>
+</button>
+<section class="bot-panel" id="botPanel" role="dialog" aria-modal="false" aria-label="Madhav AI chat" hidden>
+  <header class="bot-head">
+    <span class="bot-av"><img src="assets/bot-awake.webp" alt="" width="40" height="40"></span>
+    <div class="bot-id"><b>Madhav AI</b><small><i></i>Online now</small></div>
+    <button type="button" class="bot-human" id="botHuman">Talk to human</button>
+    <button type="button" class="bot-x" id="botX" aria-label="Close chat"><svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.6"><path d="M1 1l12 12M13 1 1 13"/></svg></button>
+  </header>
+  <div class="bot-log" id="botLog" aria-live="polite"></div>
+  <div class="bot-chips" id="botChips"></div>
+  <form class="bot-in" id="botIn" autocomplete="off">
+    <input id="botText" type="text" placeholder="Ask about work, results, AI, meditation…" aria-label="Your message" maxlength="300">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+  </form>
+  <p class="bot-foot">Madhav AI answers from his portfolio. For anything else, talk to the human.</p>
+</section>
+
 <!-- DETAILS SHEET -->
-<dialog class="sheet" id="sheet" aria-label="Details">
+<dialog class="sheet" id="sheet" aria-label="Details"><div class="sheet-box" id="sheetBox"><span class="sheet-grab" aria-hidden="true"></span>
   <button class="sheet-x" id="sheetX" aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.6"><path d="M1 1l12 12M13 1 1 13"/></svg></button>
-  <div class="sheet-in" id="sheetIn"></div>
+  <div class="sheet-in" id="sheetIn"></div></div>
 </dialog>
 
 <script>
@@ -1114,8 +1365,11 @@ if(FINEQ&&innerWidth>768){
 // ===== HAMBURGER =====
 const hbg=document.getElementById("hbg"),mob=document.getElementById("mobMenu");
 let menuOpen=false;
-function openMob(){menuOpen=true;mob.classList.add("open");hbg.classList.add("open");document.body.style.overflow="hidden"}
-function closeMob(){menuOpen=false;mob.classList.remove("open");hbg.classList.remove("open");document.body.style.overflow=""}
+const scrim=document.getElementById("mobScrim");
+function openMob(){menuOpen=true;mob.classList.add("open");scrim.classList.add("open");hbg.classList.add("open");document.body.style.overflow="hidden"}
+function closeMob(){menuOpen=false;mob.classList.remove("open");scrim.classList.remove("open");hbg.classList.remove("open");document.body.style.overflow=""}
+scrim.addEventListener("click",closeMob);
+mob.addEventListener("click",e=>{if(e.target.closest("a[href^='#']"))closeMob()});
 hbg.addEventListener("click",()=>menuOpen?closeMob():openMob());
 
 // ===== HERO CONSTELLATION =====
@@ -1255,26 +1509,27 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
 
 // ===== DETAILS SHEET (expands from the clicked card) =====
 (function(){
-  const dlg=document.getElementById("sheet"),inner=document.getElementById("sheetIn");let srcCard=null,closing=false;
+  const dlg=document.getElementById("sheet"),box=document.getElementById("sheetBox"),inner=document.getElementById("sheetIn"),curs=[document.getElementById("cur"),document.getElementById("cur-r")];let srcCard=null,closing=false;
   const EASE="cubic-bezier(.2,.8,.2,1)";
   function rectAnim(from,to,rev){const sx=from.width/to.width,sy=from.height/to.height,dx=from.left-to.left,dy=from.top-to.top;
     const k=[{transformOrigin:"0 0",transform:"translate("+dx+"px,"+dy+"px) scale("+sx+","+sy+")",opacity:.35},{transformOrigin:"0 0",transform:"none",opacity:1}];
-    return dlg.animate(rev?k.reverse():k,{duration:rev?380:560,easing:rev?"cubic-bezier(.4,0,.6,1)":EASE})}
-  document.addEventListener("click",e=>{const b=e.target.closest("[data-more]");if(!b)return;const t=document.getElementById(b.dataset.more);if(!t)return;
+    return box.animate(rev?k.reverse():k,{duration:rev?380:560,easing:rev?"cubic-bezier(.4,0,.6,1)":EASE})}
+  document.addEventListener("click",e=>{const b=e.target.closest("[data-more]");if(!b)return;const t=document.getElementById(b.dataset.more);if(!t)return;e.preventDefault();
     if(b.closest(".cs-loop")&&b.closest(".cs-loop").dataset.dragged==="1")return;
-    srcCard=b.closest(".cs-card,.vn-card,.ln-card,.st-card,.gl-c,.vl,.hb")||b.closest(".rev")||b;
+    srcCard=b.closest(".cs-card,.vn-card,.ln-card,.st-card,.gl-c,.vl")||b.closest(".rev")||b;
     const c=getComputedStyle(srcCard).getPropertyValue("--c").trim();dlg.style.setProperty("--c",c||"#d2b15e");
     srcCard.classList.add("is-open");
     inner.innerHTML="";inner.appendChild(t.content.cloneNode(true));inner.scrollTop=0;
     const from=srcCard.getBoundingClientRect();
     if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
-    if(!RMQ&&dlg.animate){rectAnim(from,dlg.getBoundingClientRect(),false);inner.animate([{opacity:0},{opacity:0,offset:.45},{opacity:1}],{duration:600,easing:"ease-out"})}
+    curs.forEach(c=>c&&dlg.appendChild(c));
+    if(!RMQ&&box.animate){rectAnim(from,box.getBoundingClientRect(),false);inner.animate([{opacity:0},{opacity:0,offset:.45},{opacity:1}],{duration:600,easing:"ease-out"})}
   });
   function closeSheet(){if(closing||!dlg.open)return;closing=true;
     const done=()=>{dlg.close();closing=false};
     const from=srcCard&&srcCard.getBoundingClientRect();
-    if(!RMQ&&dlg.animate&&from&&from.width&&from.bottom>0&&from.top<innerHeight){inner.animate([{opacity:1},{opacity:0}],{duration:160,fill:"forwards"});rectAnim(from,dlg.getBoundingClientRect(),true).onfinish=done}else done()}
-  dlg.addEventListener("close",()=>{if(srcCard)srcCard.classList.remove("is-open");inner.getAnimations&&inner.getAnimations().forEach(a=>a.cancel())});
+    if(!RMQ&&box.animate&&from&&from.width&&from.bottom>0&&from.top<innerHeight){inner.animate([{opacity:1},{opacity:0}],{duration:160,fill:"forwards"});rectAnim(from,box.getBoundingClientRect(),true).onfinish=done}else done()}
+  dlg.addEventListener("close",()=>{curs.forEach(c=>c&&document.body.insertBefore(c,document.body.firstChild));if(srcCard)srcCard.classList.remove("is-open");inner.getAnimations&&inner.getAnimations().forEach(a=>a.cancel())});
   dlg.addEventListener("cancel",e=>{e.preventDefault();closeSheet()});
   document.getElementById("sheetX").addEventListener("click",closeSheet);
   dlg.addEventListener("click",e=>{if(e.target===dlg)closeSheet()});
@@ -1407,13 +1662,131 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
 
 
 
+// ===== HOBBIES (expanding panels, auto-play) =====
+(function(){
+  const g=document.getElementById("hbGrid");if(!g)return;const items=[...g.children];let k=0,t=null,vis=false,user=false;
+  const set=i=>{k=i;items.forEach((el,j)=>{el.classList.toggle("on",j===i);el.setAttribute("aria-pressed",j===i)})};
+  const next=()=>{clearTimeout(t);if(!vis||user||RMQ)return;t=setTimeout(()=>{set((k+1)%items.length);next()},2600)};
+  items.forEach((el,i)=>{el.addEventListener("mouseenter",()=>{if(FINEQ){user=true;set(i)}});el.addEventListener("click",()=>{user=true;set(i);clearTimeout(t);setTimeout(()=>{user=false;next()},7000)})});
+  g.addEventListener("mouseleave",()=>{user=false;next()});
+  new IntersectionObserver(([e])=>{vis=e.isIntersecting;next()},{threshold:.3}).observe(g);
+  set(0);
+})();
+
+// ===== MOBILE SWIPE RAILS (dots, peek hint, focus) =====
+(function(){
+  const mq=matchMedia("(max-width:768px)");
+  document.querySelectorAll(".vl-grid,.vn-grid,.ln-grid").forEach(rail=>{
+    const kids=[...rail.children],dots=document.createElement("div");dots.className="dots";
+    kids.forEach((_,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Go to card "+(i+1));b.addEventListener("click",()=>kids[i].scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"}));dots.appendChild(b)});
+    rail.after(dots);
+    const upd=()=>{if(!mq.matches)return;const c=rail.scrollLeft+rail.clientWidth/2;let best=0,bd=1e9;kids.forEach((el,i)=>{const d=Math.abs(el.offsetLeft+el.offsetWidth/2-c);if(d<bd){bd=d;best=i}});
+      [...dots.children].forEach((d,i)=>d.classList.toggle("on",i===best));kids.forEach((el,i)=>el.classList.toggle("in-focus",i===best))};
+    rail.addEventListener("scroll",()=>requestAnimationFrame(upd),{passive:true});upd();
+    let peeked=false;new IntersectionObserver(([e])=>{if(e.isIntersecting&&mq.matches&&!peeked&&!RMQ){peeked=true;setTimeout(()=>{rail.scrollBy({left:70,behavior:"smooth"});setTimeout(()=>rail.scrollBy({left:-70,behavior:"smooth"}),650)},500)}},{threshold:.6}).observe(rail);
+  });
+})();
+
+// ===== TOUCH: ripple + press feedback + focus-on-scroll =====
+if(!FINEQ){
+  const sel=".cs-card,.vn-card,.vl,.ln-card,.gl-c,.hb,.bp,.bo,.ph-n,.gx-lg,.ind span,.soc,.certs-l li,.pill,.n-cta,.tool";
+  document.addEventListener("pointerdown",e=>{const el=e.target.closest(sel);if(!el)return;
+    el.classList.add("rp-host","tap");setTimeout(()=>el.classList.remove("tap"),160);
+    if(RMQ)return;const r=el.getBoundingClientRect(),sz=Math.max(r.width,r.height)*2.2,rp=document.createElement("span");rp.className="ripple";
+    rp.style.cssText="width:"+sz+"px;height:"+sz+"px;left:"+(e.clientX-r.left)+"px;top:"+(e.clientY-r.top)+"px";el.appendChild(rp);setTimeout(()=>rp.remove(),700)},{passive:true});
+  const fo=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("in-focus",e.isIntersecting)),{rootMargin:"-42% 0px -42% 0px"});
+  document.querySelectorAll(".gl-c,.ph-stage,.certs").forEach(el=>fo.observe(el));
+}
+
+// ===== CONTACT FORM (FormSubmit → hello@madhavbhattarai.com) =====
+const MAIL="hello@madhavbhattarai.com";
+const okHTML='<div class="cf-ok"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="29"/><path d="M20 33l8 8 16-17"/></svg><b>Message sent</b><p>Madhav will reply within 1 day, unless it\'s a weekend or he\'s meditating in the Himalayas.</p></div>';
+async function sendForm(d){
+  const r=await fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({name:d.name,email:d.email,topic:d.topic,message:d.message,source:d.source,_replyto:d.email,_subject:"New message from madhavbhattarai.com · "+d.name,_template:"table",_captcha:"false"})});
+  const j=await r.json().catch(()=>({}));
+  if(!(r.ok&&(j.success===true||j.success==="true")))throw new Error(j.message||"send failed");
+}
+document.addEventListener("click",e=>{const c=e.target.closest(".cf-chip");if(!c)return;c.parentElement.querySelectorAll(".cf-chip").forEach(x=>x.classList.toggle("on",x===c))});
+document.addEventListener("submit",async e=>{
+  const f=e.target.closest(".cf");if(!f)return;e.preventDefault();
+  const err=f.querySelector(".cf-err"),btn=f.querySelector(".cf-send"),lbl=btn.querySelector(".cf-lbl");
+  const d={name:f.name.value.trim(),email:f.email.value.trim(),message:f.message.value.trim(),topic:(f.querySelector(".cf-chip.on")||{}).textContent||"",source:f.closest("#botPanel")?"Madhav AI chat":"Contact pop-up"};
+  f.querySelectorAll(".bad").forEach(x=>x.classList.remove("bad"));
+  const bad=[];if(d.name.length<2)bad.push(f.name);if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email))bad.push(f.email);if(d.message.length<5)bad.push(f.message);
+  if(bad.length){bad.forEach(x=>x.classList.add("bad"));err.textContent="Please add your name, a valid email and a short message.";bad[0].focus();return}
+  if(f._honey.value){f.outerHTML=okHTML;return}
+  err.textContent="";btn.disabled=true;btn.classList.add("busy");lbl.textContent="Sending…";
+  try{await sendForm(d);const box=document.createElement("div");box.innerHTML=okHTML;f.replaceWith(box.firstChild);document.dispatchEvent(new CustomEvent("cf:sent",{detail:d}))}
+  catch(_){btn.disabled=false;btn.classList.remove("busy");lbl.textContent="Try again";
+    const mail="mailto:"+MAIL+"?subject="+encodeURIComponent("Hello from "+d.name)+"&body="+encodeURIComponent(d.message+"\n\n"+d.name+" · "+d.email);
+    err.innerHTML='Couldn\'t send just now. <a href="'+mail+'">Email Madhav directly</a> or write to <b>'+MAIL+'</b>.'}
+});
+
+// ===== MADHAV AI (guided chat) =====
+(function(){
+  const fab=document.getElementById("botFab"),panel=document.getElementById("botPanel"),log=document.getElementById("botLog"),chipsEl=document.getElementById("botChips"),inF=document.getElementById("botIn"),inp=document.getElementById("botText"),hint=document.getElementById("botHint");
+  if(!fab)return;
+  const H="Talk to human Madhav";
+  const START=["Who is Madhav?","How can he help my brand?","Show me results","His ventures","The spiritual side",H];
+  const K=[
+    {k:["hi","hello","hey","namaste","salam","hola","yo","good morning","good evening"],a:"Namaste 🙏 I'm the robot version of Madhav: same curiosity, fewer coffee breaks. What would you like to know?",c:START},
+    {k:["who","yourself","introduce","background","about him","who is"],a:"Madhav is a <b>Senior Performance Marketing Manager in Dubai</b>. He's a Computer Science graduate with 7+ years across 8 countries, <b>$10M+ in ad spend</b> managed and 60+ clients.<br><br>He builds startups for the sheer joy of the game, and meditates to remember that it is a game.",c:["How can he help my brand?","His career journey","The spiritual side"]},
+    {k:["help","service","offer","do for","hire","work with","brand","agency","consult","what can","growth","marketing"],a:"He helps brands grow revenue, not vanity metrics:<ul><li><b>Paid media</b> across Google, Meta, TikTok, LinkedIn, Snapchat and DV360</li><li><b>Measurement you can trust</b> with GA4, GTM and Looker Studio</li><li><b>AI automation</b> for reporting and optimisation</li></ul>The rhythm is simple: audit, strategy, launch & test, then scale.",c:["Show me results","Which industries?",H]},
+    {k:["result","case","roas","number","proof","impact","performance","cpa","cpl","leads"],a:"A few highlights:<ul><li>Luxury fashion DTC: <b>4.8x ROAS</b>, −52% CPA</li><li>GCC real estate: <b>+290% enquiries</b>, 4.2x ROAS</li><li>B2B SaaS: <b>+180% leads</b>, −65% CPL</li><li>Mobility app: <b>2.8M installs</b></li><li>Beauty brand: <b>5.2x IG ROAS</b></li></ul><a class=\"act\" href=\"#cases\" data-go>See all case studies →</a>",c:["How can he help my brand?",H]},
+    {k:["industr","sector","real estate","hospitality","luxury","ecommerce","e-commerce","saas","education","niche"],a:"Real estate, hospitality, luxury, e-commerce, B2B SaaS, education, mobility, beauty and non-profit. Mostly GCC brands, plus global SaaS and UK & Australian universities.",c:["Show me results",H]},
+    {k:["career","journey","experience","companies","worked","cv","resume","history","before"],a:"The road so far:<ul><li>CloudFactory: where precision began</li><li>Nepal Yoga Institute & Analogue: first campaigns, 15+ clients</li><li>ShareLook (Singapore): global SaaS</li><li>Isha Foundation: a reorientation of purpose</li><li>The Mediam Group: trained by Google itself</li><li>Hybrid.co: UK & Australian universities</li><li><b>Hashtag Agency, Dubai</b>: now</li></ul><a class=\"act\" href=\"#journey\" data-go>Walk the roadmap →</a>",c:["What does he do now?","The spiritual side"]},
+    {k:["now","current","today","hashtag","job","role","position"],a:"Right now he's <b>Senior Performance Marketing Manager at Hashtag Social Media Agency</b> in Dubai, leading full-funnel campaigns for GCC brands and mentoring a team.<br><br>Some call it a job. He suspects it's the universe running a campaign for itself.",c:["His ventures",H]},
+    {k:["venture","startup","cognimorph","hello5","quickhire","risespace","founder","build","product"],a:"Four ventures:<ul><li><b>CogniMorph</b>: AI automation for marketing teams (active)</li><li><b>Hello5</b>: a public space for authentic conversation (in development)</li><li><b>QuickHire</b>: AI CVs, job matching and skills (concept)</li><li><b>RiseSpace</b>: a new venture, coming soon</li></ul><a class=\"act\" href=\"#ventures\" data-go>See the ventures →</a>",c:["His AI work",H]},
+    {k:["ai","artificial","agent","automation","llm","gpt","claude","chatgpt","prompt","machine learning","learning"],a:"AI is his next chapter. He's building agentic systems through CogniMorph and studying agent architecture, RAG, marketing automation and predictive models. Prompt engineering is applied daily. (I'm living proof he likes robots.)",c:["His ventures","How can he help my brand?"]},
+    {k:["spirit","meditat","isha","sadhguru","yoga","silence","conscious","mind","peace","himalaya"],a:"He spent seven months at <b>Isha Foundation's Sadhanapada</b> program. It taught him that the most powerful communication starts in stillness, and that data without wisdom is noise.<br><br>So yes, he reads dashboards and also sits very still. Both help.",c:["What inspires him?","His hobbies"]},
+    {k:["inspir","philosoph","idol","mentor","osho","watts","tolle","krishnamurti","jobs","naval","musk","read"],a:"Builders like Steve Jobs, Elon Musk and Naval Ravikant, and seers like Sadhguru, Osho, Alan Watts, Eckhart Tolle, Jiddu Krishnamurti and Neem Karoli Baba. A slightly unusual dinner table.",c:["The spiritual side","His hobbies"]},
+    {k:["hobb","fun","free time","weekend","dance","piano","movie","trek","drive","chess","paint","personal"],a:"Off the clock: dancing, piano, painting, reading, movies, chess, solo treks, long drives and silence, which is going back to the self.",c:["The spiritual side",H]},
+    {k:["where","location","based","dubai","remote","country","timezone","uae"],a:"He's based in <b>Dubai, UAE</b>, and works with brands across the GCC and beyond, remote-friendly across time zones.",c:["How can he help my brand?",H]},
+    {k:["price","cost","rate","fee","budget","charge","quote","expensive","pricing"],a:"Every engagement is shaped by goals, channels and scale, so the human Madhav prefers to talk numbers directly. No robots in pricing meetings.",c:[H]},
+    {k:["certif","google partner","qualif","credential","degree","education"],a:"He holds <b>9 Google & industry certifications</b> (Search, Display, Video, Shopping, AI-Powered Performance, Analytics and more) and trained directly with Google as a certified partner.",c:["Show me results",H]},
+    {k:["joke","funny","laugh"],a:"Why did the performance marketer start meditating? To lower his cost per inner peace. 🧘",c:START.slice(0,3)},
+    {k:["thank","thanks","great","awesome","cool","nice"],a:"My pleasure. Anything else, or shall I pass you to the human?",c:[H,"Show me results"]},
+    {k:["bye","goodbye","see you","later"],a:"Until next time. May your ROAS be high and your mind be quiet. 🙏",c:[]},
+    {k:["contact","email","talk","human","call","meet","reach","connect","message","speak","collab"],human:true}
+  ];
+  let opened=false,greeted=false,busy=false;
+  const scroll=()=>{log.scrollTop=log.scrollHeight};
+  function add(html,who,cls){const m=document.createElement("div");m.className="msg "+who+(cls?" "+cls:"");if(who==="u")m.textContent=html;else m.innerHTML=html;log.appendChild(m);scroll();return m}
+  function chips(list){chipsEl.innerHTML="";(list||[]).forEach((t,i)=>{const b=document.createElement("button");b.type="button";b.textContent=t;if(t===H)b.className="gold";b.style.animationDelay=(i*60)+"ms";b.addEventListener("click",()=>ask(t));chipsEl.appendChild(b)})}
+  function botSay(html,next,cb){busy=true;const t=document.createElement("div");t.className="typing";t.innerHTML="<i></i><i></i><i></i>";log.appendChild(t);scroll();
+    const plain=html.replace(/<[^>]+>/g,"");setTimeout(()=>{t.remove();add(html,"b");chips(next);busy=false;cb&&cb()},RMQ?80:Math.min(1400,450+plain.length*6))}
+  function human(){chips([]);botSay("Lovely. Leave a note and the human Madhav will reply <b>within 1 day</b>, unless it's a weekend or he's meditating in the Himalayas.",[],()=>{
+    const m=add("","b","card");m.appendChild(document.getElementById("cf-tpl").content.cloneNode(true));setTimeout(()=>{const n=m.querySelector("input[name=name]");n&&FINEQ&&n.focus()},200);scroll()})}
+  function answer(q){const t=" "+q.toLowerCase()+" ";let best=null,sc=0;
+    K.forEach(it=>{let s=0;it.k.forEach(w=>{if(w.length<=3?new RegExp("\\b"+w+"\\b").test(t):t.includes(w))s+=w.length>4?2:1});if(s>sc){sc=s;best=it}});
+    if(!best)return botSay("Hmm, I'm still meditating on that one. I know Madhav's work, results, ventures, AI projects and his quieter side. Or the human himself can answer.",[H,"How can he help my brand?","Show me results"]);
+    if(best.human)return human();
+    botSay(best.a,best.c)}
+  function ask(q){if(busy)return;add(q,"u");chips([]);if(q===H)return human();answer(q)}
+  function open(){panel.hidden=false;panel.classList.remove("closing");fab.classList.add("open");fab.setAttribute("aria-expanded","true");hint.classList.remove("on");opened=true;
+    if(!greeted){greeted=true;botSay("Hi, I'm <b>Madhav AI</b> 👋 the robot who sat next to Madhav while he meditated. I know his story by heart. Ask me anything, or pick a topic.",START)}
+    if(FINEQ)setTimeout(()=>inp.focus(),300)}
+  function close(){panel.classList.add("closing");setTimeout(()=>{panel.hidden=true;panel.classList.remove("closing")},280);fab.classList.remove("open");fab.setAttribute("aria-expanded","false");fab.focus({preventScroll:true})}
+  fab.addEventListener("click",open);
+  document.getElementById("botX").addEventListener("click",close);
+  document.getElementById("botHuman").addEventListener("click",()=>{if(!busy){add(H,"u");human()}});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!panel.hidden&&!document.getElementById("sheet").open)close()});
+  inF.addEventListener("submit",e=>{e.preventDefault();const q=inp.value.trim();if(!q||busy)return;inp.value="";ask(q)});
+  log.addEventListener("click",e=>{const a=e.target.closest("[data-go]");if(!a)return;e.preventDefault();const el=document.querySelector(a.getAttribute("href"));if(innerWidth<769)close();el&&el.scrollIntoView({behavior:"smooth"})});
+  document.addEventListener("cf:sent",e=>{if(!e.target||panel.hidden)return;if(e.detail.source==="Madhav AI chat")setTimeout(()=>botSay("Sent ✨ Madhav has it. Meanwhile, anything else I can tell you?",START.slice(0,5)),600)});
+  // wake the robot when the cursor comes near, and nudge with a hint once
+  document.addEventListener("mousemove",e=>{const r=fab.getBoundingClientRect(),d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));fab.classList.toggle("awake",d<170)},{passive:true});
+  setTimeout(()=>{if(!opened){hint.classList.add("on");fab.classList.add("awake");setTimeout(()=>{hint.classList.remove("on");fab.classList.remove("awake")},5000)}},6000);
+})();
+
 // ===== MARQUEE (seamless loop) =====
 document.querySelectorAll(".marq-track").forEach(t=>{t.innerHTML+=t.innerHTML;[...t.children].slice(t.children.length/2).forEach(c=>c.setAttribute("aria-hidden","true"))});
 
 // ===== NAV SCROLLSPY =====
 (function(){
-  const links=[...document.querySelectorAll(".nr a")],map={};links.forEach(a=>map[a.getAttribute("href").slice(1)]=a);
-  const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove("act"));map[e.target.id]&&map[e.target.id].classList.add("act")}}),{rootMargin:"-45% 0px -50% 0px"});
+  const links=[...document.querySelectorAll(".nr a,.mob-menu a.mm")],map={};links.forEach(a=>{const k=a.getAttribute("href").slice(1);(map[k]=map[k]||[]).push(a)});
+  const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove("act"));(map[e.target.id]||[]).forEach(a=>a.classList.add("act"))}}),{rootMargin:"-45% 0px -50% 0px"});
   Object.keys(map).forEach(id=>{const el=document.getElementById(id);el&&spy.observe(el)});
 })();
 
