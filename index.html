@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://madhavbhattarai.com/">
 <meta property="og:title" content="Madhav Bhattarai — Performance Marketer & Growth Architect">
 <meta property="og:description" content="$10M+ in paid media managed, 60+ clients across the GCC. Performance marketing, AI automation and a meditative mind.">
-<meta property="og:image" content="https://madhavbhattarai.com/assets/robot/f023.webp">
+<meta property="og:image" content="https://madhavbhattarai.com/assets/robot/f030.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060d'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='30' fill='%23c9a84c'%3EMB%3C/text%3E%3C/svg%3E">
 <link rel="preload" as="image" href="assets/robot/f001.webp">
@@ -45,6 +45,7 @@ img{max-width:100%}
 #cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
 #cur-r{position:fixed;width:34px;height:34px;border:1px solid rgba(210,177,94,.4);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .35s,background .35s}
 #cur-r.hov{width:56px;height:56px}
+#cur,#cur-r{mix-blend-mode:difference}
 #cur-r.aware{width:74px;height:74px;border-color:rgba(120,190,255,.55);background:rgba(90,168,255,.05)}
 
 /* ---------- shared type ---------- */
@@ -609,6 +610,13 @@ dialog.sheet[open]{display:grid;place-items:center}
 }
 @media(hover:hover) and (pointer:fine) and (min-width:769px){.bot-panel input,.cf input,.cf textarea{cursor:none}}
 
+
+/* ---------- UX polish ---------- */
+.menu-open .bot-fab{opacity:0;transform:scale(.8);pointer-events:none}
+html:has(dialog.sheet[open]){overflow:hidden}
+@media(max-width:768px){html:has(.bot-panel:not([hidden])){overflow:hidden}}
+section[id],div[id="isha"]{scroll-margin-top:64px}
+.bot-fab:focus-visible,.hb:focus-visible,.cf-chip:focus-visible{outline:2px solid var(--gl);outline-offset:3px}
 /* ---------- sheet accent + open card ---------- */
 .sheet .k{color:var(--c)}.sheet .kpis b{color:var(--c)}.sheet li::before{background:var(--c)}
 .sheet .kpis div{border-color:color-mix(in srgb,var(--c) 22%,transparent)}
@@ -834,7 +842,7 @@ dialog.sheet[open]{display:grid;place-items:center}
         <div class="h-stat"><b>8</b><small>Countries</small></div>
       </div>
       <div class="h-cta">
-        <a href="#contact" class="bp mag">Work with me <span class="arr">→</span></a>
+        <a href="#contact" class="bp mag" data-more="m-contact">Work with me <span class="arr">→</span></a>
         <a href="#cases" class="bo mag">See results</a>
       </div>
     </div>
@@ -1375,9 +1383,10 @@ if(FINEQ&&innerWidth>768){
 const hbg=document.getElementById("hbg"),mob=document.getElementById("mobMenu");
 let menuOpen=false;
 const scrim=document.getElementById("mobScrim");
-function openMob(){menuOpen=true;mob.classList.add("open");scrim.classList.add("open");hbg.classList.add("open");document.body.style.overflow="hidden"}
-function closeMob(){menuOpen=false;mob.classList.remove("open");scrim.classList.remove("open");hbg.classList.remove("open");document.body.style.overflow=""}
+function openMob(){menuOpen=true;document.body.classList.add("menu-open");mob.classList.add("open");scrim.classList.add("open");hbg.classList.add("open");document.body.style.overflow="hidden"}
+function closeMob(){menuOpen=false;document.body.classList.remove("menu-open");mob.classList.remove("open");scrim.classList.remove("open");hbg.classList.remove("open");document.body.style.overflow=""}
 scrim.addEventListener("click",closeMob);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&menuOpen)closeMob()});
 mob.addEventListener("click",e=>{if(e.target.closest("a[href^='#']"))closeMob()});
 hbg.addEventListener("click",()=>menuOpen?closeMob():openMob());
 
@@ -1558,7 +1567,8 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
   const kick=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(frame)}};
   new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis){kick();track.querySelectorAll(".cs-card").forEach(c=>c.classList.add("vis"))}},{threshold:.15}).observe(loop);
   document.addEventListener("visibilitychange",()=>{if(!document.hidden&&vis)kick()});
-  if(FINEQ){loop.addEventListener("mouseenter",()=>hover=true);loop.addEventListener("mouseleave",()=>hover=false)}
+  let touchT;if(FINEQ){loop.addEventListener("mouseenter",()=>hover=true);loop.addEventListener("mouseleave",()=>hover=false)}
+  else{loop.addEventListener("pointerdown",()=>{hover=true;clearTimeout(touchT)});addEventListener("pointerup",()=>{clearTimeout(touchT);touchT=setTimeout(()=>{hover=false;kick()},2500)})}
   loop.addEventListener("pointerdown",e=>{drag={sx:e.clientX,lx:e.clientX,moved:false};vel=0;loop.dataset.dragged="0"});
   addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.lx;drag.lx=e.clientX;
     if(!drag.moved&&Math.abs(e.clientX-drag.sx)>6){drag.moved=true;loop.classList.add("drag");loop.dataset.dragged="1"}
@@ -1617,7 +1627,7 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
   const stage=document.getElementById("stage");if(!stage)return;
   const cv=document.getElementById("robot"),ctx=cv.getContext("2d");
   const s3=document.getElementById("stage3d"),fl=document.getElementById("robotFloat"),gs=document.getElementById("gShadow"),capT=document.getElementById("capT"),curR=document.getElementById("cur-r");
-  const N=24,OPEN=22,frames=new Array(N);let ready=0;// contiguous frames loaded from 0
+  const N=92,OPEN=22,frames=new Array(N);let ready=0;// contiguous frames loaded from 0
   const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const FINE=matchMedia("(hover:hover) and (pointer:fine)").matches;
   const src=i=>"assets/robot/f"+String(i+1).padStart(3,"0")+".webp";
@@ -1628,15 +1638,7 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
   let cur=0,target=0,aware=false,holdUntil=0,lastDrawn=-1;
   const capSleep=FINE?"In stillness — come closer":"In stillness — tap to awaken",capAwake="Aware — where AI meets consciousness";
   capT.textContent=capSleep;
-  // live eyes: painted over the open-eyed frame so the gaze can follow the cursor
-  const EYES=[[294,107],[355,109]],VISOR="14,20,31";let gx=0,gy=0,eyeA=0,blinkAt=performance.now()+2500,blinkP=1;
-  function drawEyes(a,bl){ctx.save();ctx.globalAlpha=a;
-    EYES.forEach(([x,y])=>{const g=ctx.createRadialGradient(x,y,0,x,y,21);g.addColorStop(0,"rgb("+VISOR+")");g.addColorStop(.62,"rgba("+VISOR+",.97)");g.addColorStop(1,"rgba("+VISOR+",0)");ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,21,0,6.283);ctx.fill()});
-    ctx.shadowColor="rgba(95,185,255,.95)";ctx.shadowBlur=16;
-    EYES.forEach(([x,y])=>{const ex=x+gx,ey=y+gy,g=ctx.createRadialGradient(ex-2,ey-2,0,ex,ey,11.5);g.addColorStop(0,"#f5fcff");g.addColorStop(.55,"#c4e8ff");g.addColorStop(1,"#6fc2ff");
-      ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(ex,ey,11,Math.max(1.2,11*bl),0,0,6.283);ctx.fill()});
-    ctx.restore()}
-  function draw(f,force){f=Math.max(0,Math.min(ready-1,Math.round(f)));if((f===lastDrawn&&!force)||!frames[f])return;ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(frames[f],0,0,cv.width,cv.height);lastDrawn=f;if(eyeA>.01)drawEyes(eyeA,blinkP)}
+  function draw(f){f=Math.max(0,Math.min(ready-1,Math.round(f)));if(f===lastDrawn||!frames[f])return;ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(frames[f],0,0,cv.width,cv.height);lastDrawn=f}
   function wake(){if(aware)return;aware=true;stage.classList.add("aware");curR&&curR.classList.add("aware");capT.textContent=capAwake;target=OPEN;holdUntil=performance.now()+1300}
   function sleep(){if(!aware)return;aware=false;stage.classList.remove("aware");curR&&curR.classList.remove("aware");capT.textContent=capSleep;target=0}
 
@@ -1646,8 +1648,7 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
     const r=stage.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height*.42,d=Math.hypot(mx-cx,my-cy);
     if(d<r.width*.5)wake();else if(d>r.width*.68)sleep()},{passive:true});
   document.documentElement.addEventListener("mouseleave",()=>{hasMouse=false;sleep()});
-  let tapX=0,tapY=0,tapUntil=0;
-  stage.addEventListener("click",e=>{if(!FINE){tapX=e.clientX;tapY=e.clientY;tapUntil=performance.now()+2500;aware?sleep():wake()}});
+  stage.addEventListener("click",()=>{if(!FINE)aware?sleep():wake()});
   if(!FINE){ // touch: awaken once as a greeting
     let greeted=false;new IntersectionObserver(([e])=>{if(e.isIntersecting&&!greeted){greeted=true;setTimeout(wake,1800)}},{threshold:.6}).observe(stage);
   }
@@ -1657,23 +1658,13 @@ document.querySelectorAll(".ln-card").forEach(c=>rObs.observe(c));
   new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(!vis)sleep();else kick()}).observe(stage);
   function loop(now){raf=0;
     const dt=Math.min(.05,(now-last)/1000);last=now;const t=(now-t0)/1000;
-    // frame scrubbing: forward to open the eyes and hold; reverse to close
+    // frame scrubbing: forward to open eyes, hold, then look around; reverse to close
+    if(aware&&target===OPEN&&cur>=OPEN&&now>holdUntil)target=N-1;
     const tg=Math.min(target,ready-1),diff=tg-cur;
     if(Math.abs(diff)>.01){const sp=(diff>0?24:34)*(RM?6:1);cur+=Math.sign(diff)*Math.min(Math.abs(diff),sp*dt)}
-    const r=stage.getBoundingClientRect();
-    // gaze: the eyes follow the cursor (or a tap, or wander softly on touch)
-    eyeA=Math.max(0,Math.min(1,cur-(OPEN-1)));
-    let tgx=0,tgy=0;
-    if(eyeA>0){const cr=cv.getBoundingClientRect(),ex=cr.left+cr.width*(324/648),ey=cr.top+cr.height*(108/504);
-      if(hasMouse&&FINE){tgx=(mx-ex)/(cr.width*.55);tgy=(my-ey)/(cr.height*.55)}
-      else if(now<tapUntil){tgx=(tapX-ex)/(cr.width*.45);tgy=(tapY-ey)/(cr.height*.45)}
-      else if(!RM){tgx=Math.sin(t*.6)*.6+Math.sin(t*1.7)*.15;tgy=Math.cos(t*.45)*.4}
-      tgx=Math.max(-1,Math.min(1,tgx))*9;tgy=Math.max(-1,Math.min(1,tgy))*6}
-    gx+=(tgx-gx)*.2;gy+=(tgy-gy)*.2;
-    if(!RM&&now>blinkAt){const p=(now-blinkAt)/170;if(p>=1){blinkP=1;blinkAt=now+2200+Math.random()*3200}else blinkP=1-Math.sin(p*Math.PI)*.92}
-    draw(cur,eyeA>.01);
+    draw(cur);
     // 3D tilt toward the cursor, gentle idle sway otherwise
-    let tx,ty;
+    const r=stage.getBoundingClientRect();let tx,ty;
     if(hasMouse&&!RM){tx=Math.max(-1,Math.min(1,(mx-(r.left+r.width/2))/(innerWidth*.5)));ty=Math.max(-1,Math.min(1,(my-(r.top+r.height/2))/(innerHeight*.5)))}
     else{tx=RM?0:Math.sin(t*.35)*.35;ty=RM?0:Math.cos(t*.27)*.2}
     rx+=(-ty*9-rx)*.06;ry+=(tx*13-ry)*.06;
