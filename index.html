@@ -612,6 +612,15 @@ dialog.sheet[open]{display:grid;place-items:center}
 @media(hover:hover) and (pointer:fine) and (min-width:769px){.bot-panel input,.cf input,.cf textarea{cursor:none}}
 
 
+
+/* ---------- contact portrait ---------- */
+.ct-me{position:relative;width:136px;height:136px;margin:0 auto 2.4rem}
+.ct-me img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid rgba(210,177,94,.55);box-shadow:0 20px 50px -18px rgba(0,0,0,.8),0 0 50px -10px rgba(210,177,94,.35)}
+.ct-ring{position:absolute;inset:-10px;border-radius:50%;background:conic-gradient(from 0deg,rgba(210,177,94,0),rgba(210,177,94,.85),rgba(90,168,255,.5),rgba(210,177,94,0) 70%);-webkit-mask:radial-gradient(circle,transparent 62%,#000 63%,#000 66%,transparent 67%);mask:radial-gradient(circle,transparent 62%,#000 63%,#000 66%,transparent 67%);animation:spin 9s linear infinite}
+.ct-me::before{content:"";position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(210,177,94,.14),transparent 70%);z-index:0}
+.ct-badge{position:absolute;z-index:2;left:50%;bottom:-14px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);background:rgba(13,15,31,.92);border:1px solid var(--cb2);border-radius:999px;padding:.38rem .75rem;backdrop-filter:blur(8px)}
+.ct-badge i{width:7px;height:7px;border-radius:50%;background:#34d399;animation:ping 2.2s ease-out infinite}
+@media(max-width:768px){.ct-me{width:112px;height:112px;margin-bottom:2.2rem}footer{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}}
 /* ---------- UX polish ---------- */
 .menu-open .bot-fab{opacity:0;transform:scale(.8);pointer-events:none}
 html:has(dialog.sheet[open]){overflow:hidden}
@@ -1283,6 +1292,11 @@ section[id],div[id="isha"]{scroll-margin-top:64px}
 <!-- ===== CONTACT ===== -->
 <div class="band"><section class="sec" id="contact">
   <div class="ct-in rev">
+    <div class="ct-me">
+      <span class="ct-ring" aria-hidden="true"></span>
+      <img src="assets/madhav.webp" alt="Madhav Bhattarai" width="136" height="136" loading="lazy">
+      <span class="ct-badge"><i></i>Replies within 1 day</span>
+    </div>
     <p class="slbl">Contact</p>
     <h2 class="stitle">Let's <em>build</em> something remarkable</h2>
     <a href="mailto:hello@madhavbhattarai.com" class="ct-email">hello@madhavbhattarai.com</a>
@@ -1755,26 +1769,133 @@ document.addEventListener("submit",async e=>{
   if(!fab)return;
   const H="Talk to human Madhav";
   const START=["Who is Madhav?","How can he help my brand?","Show me results","His ventures","The spiritual side",H];
+  const GO=(h,l)=>'<a class="act" href="'+h+'" data-go>'+l+' →</a>';
+  // ---- what Madhav AI knows about Madhav ----
   const K=[
-    {k:["hi","hello","hey","namaste","salam","hola","yo","good morning","good evening"],a:"Namaste 🙏 Good to have you here. What would you like to know about Madhav?",c:START},
-    {k:["who","yourself","introduce","background","about him","who is"],a:"Madhav is a <b>Senior Performance Marketing Manager in Dubai</b>. He's a Computer Science graduate with 7+ years across 8 countries, <b>$10M+ in ad spend</b> managed and 60+ clients.<br><br>He helps businesses grow from the ground up to scale, with a perspective shaped by work across many industries.",c:["How can he help my brand?","His career journey","The spiritual side"]},
-    {k:["help","service","offer","do for","hire","work with","brand","agency","consult","what can","growth","marketing"],a:"He helps brands grow revenue, not vanity metrics:<ul><li><b>Paid media</b> across Google, Meta, TikTok, LinkedIn, Snapchat and DV360</li><li><b>Measurement you can trust</b> with GA4, GTM and Looker Studio</li><li><b>AI automation</b> for reporting and optimisation</li></ul>The rhythm is simple: audit, strategy, launch & test, then scale.",c:["Show me results","Which industries?",H]},
-    {k:["result","case","roas","number","proof","impact","performance","cpa","cpl","leads"],a:"A few highlights:<ul><li>Luxury fashion DTC: <b>4.8x ROAS</b>, −52% CPA</li><li>GCC real estate: <b>+290% enquiries</b>, 4.2x ROAS</li><li>B2B SaaS: <b>+180% leads</b>, −65% CPL</li><li>Mobility app: <b>2.8M installs</b></li><li>Beauty brand: <b>5.2x IG ROAS</b></li></ul><a class=\"act\" href=\"#cases\" data-go>See all case studies →</a>",c:["How can he help my brand?",H]},
-    {k:["industr","sector","real estate","hospitality","luxury","ecommerce","e-commerce","saas","education","niche"],a:"Real estate, hospitality, luxury, e-commerce, B2B SaaS, education, mobility, beauty and non-profit. Mostly GCC brands, plus global SaaS and UK & Australian universities.",c:["Show me results",H]},
-    {k:["career","journey","experience","companies","worked","cv","resume","history","before"],a:"The road so far:<ul><li>CloudFactory: where precision began</li><li>Pragya: built a yoga & meditation app, its website and SEO</li><li>Nepal Yoga Institute & Analogue: first campaigns, 15+ clients</li><li>ShareLook (Singapore): global SaaS</li><li>Isha Foundation: a reorientation of purpose</li><li>The Mediam Group: trained by Google itself</li><li>Hybrid.co: UK & Australian universities</li><li><b>Hashtag Agency, Dubai</b>: now</li></ul><a class=\"act\" href=\"#journey\" data-go>Walk the roadmap →</a>",c:["What does he do now?","The spiritual side"]},
-    {k:["now","current","today","hashtag","job","role","position"],a:"Right now he's <b>Senior Performance Marketing Manager at Hashtag Social Media Agency</b> in Dubai, leading full-funnel campaigns for GCC brands and mentoring a team.",c:["His ventures",H]},
-    {k:["venture","startup","cognimorph","hello5","quickhire","risespace","founder","build","product"],a:"Four ventures:<ul><li><b>CogniMorph</b>: AI automation for marketing teams (active)</li><li><b>Hello5</b>: a public space for authentic conversation (in development)</li><li><b>QuickHire</b>: AI CVs, job matching and skills (concept)</li><li><b>RiseSpace</b>: a self-improvement app for habits, money management and personal AI coaching (coming soon)</li></ul><a class=\"act\" href=\"#ventures\" data-go>See the ventures →</a>",c:["His AI work",H]},
-    {k:["ai","artificial","agent","automation","llm","gpt","claude","chatgpt","prompt","machine learning","learning"],a:"AI is his next chapter. He's building agentic systems through CogniMorph and studying agent architecture, RAG, marketing automation and predictive models. Prompt engineering is part of his daily work.",c:["His ventures","How can he help my brand?"]},
-    {k:["spirit","meditat","isha","sadhguru","yoga","silence","conscious","mind","peace","himalaya"],a:"He spent seven months at <b>Isha Foundation's Sadhanapada</b> program. It taught him that the most powerful communication starts in stillness, and that data without wisdom is noise.<br><br>He brings that same clarity and intention to every campaign.",c:["What inspires him?","His hobbies"]},
-    {k:["inspir","philosoph","idol","mentor","osho","watts","tolle","krishnamurti","jobs","naval","musk","read"],a:"He draws on builders like Steve Jobs, Elon Musk and Naval Ravikant, and on spiritual teachers like Sadhguru, Osho, Alan Watts, Eckhart Tolle, Jiddu Krishnamurti and Neem Karoli Baba.",c:["The spiritual side","His hobbies"]},
-    {k:["hobb","fun","free time","weekend","dance","piano","movie","trek","drive","chess","paint","personal"],a:"Outside work, he enjoys dancing, playing piano, painting, reading, movies, chess, solo treks, long drives and time in silence.",c:["The spiritual side",H]},
-    {k:["where","location","based","dubai","remote","country","timezone","uae"],a:"He's based in <b>Dubai, UAE</b>, and works with brands across the GCC and beyond, remote-friendly across time zones.",c:["How can he help my brand?",H]},
-    {k:["price","cost","rate","fee","budget","charge","quote","expensive","pricing"],a:"Every engagement is shaped by goals, channels and scale, so Madhav prefers to discuss pricing directly once he understands your needs.",c:[H]},
-    {k:["certif","google partner","qualif","credential","degree","education"],a:"He holds <b>9 Google & industry certifications</b> (Search, Display, Video, Shopping, AI-Powered Performance, Analytics and more) and trained directly with Google as a certified partner.",c:["Show me results",H]},
-    {k:["thank","thanks","great","awesome","cool","nice"],a:"You're welcome. Is there anything else you'd like to know?",c:[H,"Show me results"]},
-    {k:["bye","goodbye","see you","later"],a:"Thank you for visiting. Wishing you clarity and growth. 🙏",c:[]},
-    {k:["contact","email","talk","human","call","meet","reach","connect","message","speak","collab"],human:true}
+    {id:"who",k:["who is","yourself","introduce","background","about him","about madhav","tell me about him","who's madhav"],a:"Madhav is a <b>Senior Performance Marketing Manager in Dubai</b>. He's a Computer Science graduate with 7+ years across 8 countries, <b>$10M+ in ad spend</b> managed and 60+ clients.<br><br>He helps businesses grow from the ground up to scale, with a perspective shaped by work across many industries.",
+      m:"A little more: he started in data and web development, moved into performance marketing, and spent seven months at Isha Foundation along the way. Today he leads paid media for GCC brands and builds AI products on the side. Calm in strategy, sharp in execution.",c:["How can he help my brand?","His career journey","The spiritual side"]},
+    {id:"now",k:["do now","doing now","right now","these days","now","current","currently","nowadays","hashtag","his job","present role","position","working now","where does he work"],a:"Right now he's <b>Senior Performance Marketing Manager at Hashtag Social Media Agency</b> in Dubai, leading full-funnel campaigns for GCC brands and mentoring a team.",c:["His ventures",H]},
+    {id:"help",k:["what does he do","what he does","his work","help","service","offer","do for","hire","work with","brand","agency","consult","what can","growth","marketing","grow my","scale"],a:"He helps brands grow revenue, not vanity metrics:<ul><li><b>Paid media</b> across Google, Meta, TikTok, LinkedIn, Snapchat and DV360</li><li><b>Measurement you can trust</b> with GA4, GTM and Looker Studio</li><li><b>AI automation</b> for reporting and optimisation</li></ul>The rhythm is simple: audit, strategy, launch & test, then scale.",
+      m:"How it usually works:<ul><li><b>Audit</b>: find the leaks in funnel, tracking and spend</li><li><b>Strategy</b>: channel mix, budgets and KPIs agreed together</li><li><b>Launch & test</b>: structured creative and audience testing</li><li><b>Scale</b>: double down on what pays, cut what doesn't</li></ul>",c:["Show me results","Which industries?",H]},
+    {id:"results",k:["result","results","case stud","case","proof","impact","achievement","success","portfolio","examples"],a:"A few highlights:<ul><li>Luxury fashion DTC: <b>4.8x ROAS</b>, −52% CPA</li><li>GCC real estate: <b>+290% enquiries</b>, 4.2x ROAS</li><li>B2B SaaS: <b>+180% leads</b>, −65% CPL</li><li>Mobility app: <b>2.8M installs</b></li><li>Beauty brand: <b>5.2x IG ROAS</b></li></ul>"+GO("#cases","See all case studies"),
+      m:"One more worth mentioning: a UK university campaign across 14 markets delivered <b>+89% leads</b> at −38% CPL. The common thread in all of them is clean tracking first, then disciplined creative testing.",c:["How can he help my brand?",H]},
+    {id:"ind",k:["industr","sector","real estate","hospitality","luxury","ecommerce","e-commerce","saas","niche","clients"],a:"Real estate, hospitality, luxury, e-commerce, B2B SaaS, education, mobility, beauty and non-profit. Mostly GCC brands, plus global SaaS and UK & Australian universities.",c:["Show me results",H]},
+    {id:"career",k:["career","careers","journey","experience","companies","worked","cv","resume","history","previous","roadmap"],a:"The road so far:<ul><li>CloudFactory: data analyst, where precision began</li><li>Pragya: web & app developer for a yoga & meditation app</li><li>Nepal Yoga Institute & Analogue: first campaigns, 15+ clients</li><li>ShareLook (Singapore): global SaaS</li><li>Isha Foundation: a reorientation of purpose</li><li>The Mediam Group: trained by Google itself</li><li>Hybrid.co: UK & Australian universities</li><li><b>Hashtag Agency, Dubai</b>: now</li></ul>"+GO("#journey","Walk the roadmap"),
+      m:"The interesting part is the arc: from writing code, to analysing data, to marketing, to a seven-month pause at Isha Foundation, and back into leadership with a clearer head. Each chapter added a layer.",c:["What does he do now?","The spiritual side"]},
+    {id:"cogni",k:["cognimorph","cogni morph"],a:"<b>CogniMorph</b> is Madhav's AI automation agency. It builds AI workflows, LLM integrations and automated reporting so marketing teams spend less time on manual work and more on strategy.",c:["His ventures","His AI work",H]},
+    {id:"hello5",k:["hello5","hello 5"],a:"<b>Hello5</b> is a public platform for authentic conversation: threads, communities and interest-based discovery, built for people who want real perspectives rather than performance. It's in development.",c:["His ventures",H]},
+    {id:"qh",k:["quickhire","quick hire"],a:"<b>QuickHire</b> is a career platform concept that combines an AI-powered CV builder, smart job matching and skill courses, so talent anywhere can find opportunity faster.",c:["His ventures",H]},
+    {id:"rise",k:["risespace","rise space"],a:"<b>RiseSpace</b> is a self-improvement app that brings habit tracking, money management and personal AI coaching together, to make every step toward a goal easier to plan and sustain. It's coming soon.",c:["His ventures",H]},
+    {id:"avail",k:["available","availability","freelance","take on","open to work","new projects","new clients","consulting","side projects","engagement"],a:"Yes, Madhav is open to select projects and collaborations alongside his role. The best way to start is a short note about your goals, and he'll reply within a day.",c:[H,"How can he help my brand?"]},
+    {id:"ventures",k:["venture","ventures","startup","cognimorph","hello5","quickhire","risespace","founder","side project","products"],a:"Four ventures:<ul><li><b>CogniMorph</b>: AI automation for marketing teams (active)</li><li><b>Hello5</b>: a public space for authentic conversation (in development)</li><li><b>QuickHire</b>: AI CVs, job matching and skills (concept)</li><li><b>RiseSpace</b>: a self-improvement app for habits, money management and personal AI coaching (coming soon)</li></ul>"+GO("#ventures","See the ventures"),
+      m:"They share one idea: use technology to remove friction from work and life, so people can spend more energy on what actually matters.",c:["His AI work",H]},
+    {id:"ai",k:["his ai","ai work","artificial","agent","automation","llm","machine learning","learning","agentic"],a:"AI is his next chapter. He's building agentic systems through CogniMorph and studying agent architecture, RAG, marketing automation and predictive models. Prompt engineering is part of his daily work.",
+      m:"In practice that means automated reporting, anomaly alerts on campaigns, AI-assisted creative testing and internal copilots that save teams hours every week.",c:["His ventures","How can he help my brand?"]},
+    {id:"spirit",k:["spiritual","spirit","meditat","isha","sadhguru","yoga","silence","conscious","inner","himalaya","sadhanapada"],a:"He spent seven months at <b>Isha Foundation's Sadhanapada</b> program. It taught him that the most powerful communication starts in stillness, and that data without wisdom is noise.<br><br>He brings that same clarity and intention to every campaign.",
+      m:"He still keeps a daily practice. In his words, the pause before a decision is often worth more than the decision itself.",c:["What inspires him?","His hobbies"]},
+    {id:"inspo",k:["inspir","philosoph","idol","role model","osho","watts","tolle","krishnamurti","steve jobs","naval","musk","neem karoli"],a:"He draws on builders like Steve Jobs, Elon Musk and Naval Ravikant, and on spiritual teachers like Sadhguru, Osho, Alan Watts, Eckhart Tolle, Jiddu Krishnamurti and Neem Karoli Baba.",c:["The spiritual side","His hobbies"]},
+    {id:"hobby",k:["hobb","free time","weekend","dance","dancing","piano","movie","trek","drive","chess","paint","reading","personal life","outside work"],a:"Outside work, he enjoys dancing, playing piano, painting, reading, movies, chess, solo treks, long drives and time in silence.",c:["The spiritual side",H]},
+    {id:"where",k:["location","based","dubai","remote","country","countries","timezone","uae","where is he","where does he live","nepal"],a:"He's based in <b>Dubai, UAE</b>, and works with brands across the GCC and beyond, remote-friendly across time zones. His story began in Kathmandu, Nepal.",c:["How can he help my brand?",H]},
+    {id:"price",k:["price","cost","rate","fee","charge","quote","expensive","pricing","how much does he"],a:"Every engagement is shaped by goals, channels and scale, so Madhav prefers to discuss pricing directly once he understands your needs.",c:[H]},
+    {id:"cert",k:["certif","google partner","qualif","credential","degree","study","studied","university"],a:"He's a Computer Science graduate and holds <b>9 Google & industry certifications</b> (Search, Display, Video, Shopping, AI-Powered Performance, Analytics and more). He also trained directly with Google as a certified partner.",c:["Show me results",H]},
+    {id:"skills",k:["skill","tools","stack","expertise","platform","good at","strength"],a:"His core stack: Google Ads, Meta, TikTok, LinkedIn, Snapchat, DV360/CM360 on the media side; GA4, GTM, Looker Studio, HubSpot and BigQuery for data; plus AI automation and prompt engineering."+GO("#skills","Open the growth galaxy"),c:["Show me results",H]},
+    {id:"contact",k:["contact","email him","talk to","human","call","meet","reach","connect","get in touch","message him","speak to","collab","work together","book"],human:true}
   ];
+  // ---- general marketing knowledge, for "what is / how to" questions ----
+  const KB=[
+    {k:["roas","return on ad spend"],a:"<b>ROAS</b> (return on ad spend) is revenue divided by ad spend. A 4x ROAS means every 1 dirham in ads brought back 4 in revenue. A healthy target depends on your margins, not on a universal number."},
+    {k:["improve","increase","boost","optimise","optimize","improve roas","increase roas","better roas","roas tips","lower cpa","reduce cpa","improve performance","improve ads","ads not working"],a:"A few levers that usually move ROAS:<ul><li>Fix tracking first, so you optimise on real conversions</li><li>Test creative in a structured way; it's the biggest lever on Meta and TikTok</li><li>Prune audiences and keywords that spend without converting</li><li>Improve the landing page; a higher conversion rate lifts every channel</li><li>Shift budget toward proven winners gradually</li></ul>Madhav can audit your account if you'd like a specific view."},
+    {k:["cpa","cost per acquisition","cac","customer acquisition cost"],a:"<b>CPA</b> is what you pay for one conversion, such as a sale or sign-up. <b>CAC</b> is the full cost of winning a customer, often including more than ads. Both only make sense next to customer lifetime value."},
+    {k:["cpl","cost per lead"],a:"<b>CPL</b> is the cost of one lead. Cheap leads aren't always good leads, so it's worth tracking lead quality and close rate alongside it."},
+    {k:["ctr","click through"],a:"<b>CTR</b> (click-through rate) is clicks divided by impressions. It signals how relevant and compelling your ad is, but sales are the number that matters in the end."},
+    {k:["conversion rate","cvr"],a:"<b>Conversion rate</b> is the share of visitors who take the action you want. Small gains here are powerful because they make every channel more efficient at once."},
+    {k:["seo","search engine optimi"],a:"<b>SEO</b> is earning visibility in organic search through technical health, genuinely useful content and authority from links. It's slower than ads but compounds over time."},
+    {k:["sem","ppc","pay per click","google ads","search ads"],a:"<b>Search ads</b> (SEM or PPC) put you in front of people actively searching for what you offer. They capture existing demand, which makes them one of the most intent-rich channels."},
+    {k:["ga4","google analytics"],a:"<b>GA4</b> is Google's analytics platform, built around events rather than sessions. Set up well, it's the backbone for knowing which channels truly drive revenue."},
+    {k:["gtm","tag manager"],a:"<b>Google Tag Manager</b> lets you manage tracking tags without editing site code each time. It makes measurement faster to deploy and easier to keep clean."},
+    {k:["attribution"],a:"<b>Attribution</b> decides which touchpoints get credit for a conversion. Last-click is simple but often unfair to upper-funnel channels, so many teams compare models or run incrementality tests."},
+    {k:["funnel","full funnel","tofu","bofu"],a:"A <b>full-funnel</b> approach plans for every stage: awareness, consideration and conversion. The bottom of the funnel can only harvest what the top has planted."},
+    {k:["performance marketing"],a:"<b>Performance marketing</b> is advertising measured by outcomes such as sales, leads or installs, rather than reach alone. Every dirham is expected to earn its place."},
+    {k:["budget","how much should i spend","ad spend","how much to spend"],a:"A practical way to set a budget: work backwards from the goal. Target customers × acceptable acquisition cost gives the budget you need. Start with a testing phase, learn what converts, then scale what works."},
+    {k:["meta vs google","google vs meta","facebook or google","which platform","best platform","which channel"],a:"Google captures existing intent, people already searching. Meta, TikTok and Snapchat create demand through discovery. Most brands grow fastest with both, weighted by product, audience and margins."},
+    {k:["tiktok"],a:"<b>TikTok</b> rewards native, creator-style content more than polished ads. Spark Ads, which boost organic posts, often outperform traditional formats."},
+    {k:["linkedin","b2b"],a:"For <b>B2B</b>, LinkedIn offers precise targeting by job title, seniority and company size. It costs more per click, so it works best with a clear offer and a strong lead-nurture flow."},
+    {k:["branding","brand vs performance","brand awareness"],a:"<b>Brand</b> builds memory and trust over time; <b>performance</b> converts the demand that exists today. The strongest growth comes when both work together rather than compete for budget."},
+    {k:["ai in marketing","ai for marketing","use ai","chatgpt for marketing","ai tools"],a:"AI is most useful in marketing for automated reporting, creative variation and testing, audience insights, anomaly alerts and faster research. It amplifies good strategy; it doesn't replace it."},
+    {k:["agentic","ai agent","what are agents"],a:"<b>AI agents</b> are systems that can plan steps, use tools and act toward a goal with little supervision, for example pulling ad data, spotting anomalies and drafting a report on their own."},
+    {k:["rag","retrieval"],a:"<b>RAG</b> (retrieval-augmented generation) lets an AI model answer using your own documents or data, so responses are grounded in facts rather than general knowledge."},
+    {k:["llm","large language model"],a:"An <b>LLM</b> is a large language model, the technology behind assistants like ChatGPT and Claude. It predicts language well enough to write, summarise and reason across many tasks."}
+  ];
+  const ctx={last:null,name:"",pending:null,misses:0};
+  const pick=a=>a[Math.floor(Math.random()*a.length)];
+  const nm=()=>ctx.name?", "+ctx.name:"";
+  const norm=q=>q.toLowerCase().replace(/[’`]/g,"'").replace(/[^a-z0-9$%+\-*/.'?×÷^()\s]/g," ").replace(/\s+/g," ").trim();
+  function lev(a,b){if(a===b)return 0;const m=a.length,n=b.length;if(Math.abs(m-n)>1)return 2;let p=Array.from({length:n+1},(_,i)=>i);
+    for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+  function hit(t,toks,w){if(w.includes(" "))return t.includes(w);if(w.length<=3)return toks.includes(w);if(t.includes(w))return true;
+    if(w.length>=6)return toks.some(x=>x.length>=w.length-1&&(lev(x,w)<=1||lev(x.slice(0,w.length),w)<=1));return false}
+  function score(list,t,toks){let best=null,sc=0;list.forEach(it=>{let s=0;it.k.forEach(w=>{if(hit(t,toks,w))s+=w.includes(" ")?3:w.length>4?2:1});if(s>sc){sc=s;best=it}});return [best,sc]}
+  const greetWord=()=>{const h=new Date().getHours();return h<5?"Hello":h<12?"Good morning":h<17?"Good afternoon":"Good evening"};
+  const dubai=o=>new Date().toLocaleString("en-US",Object.assign({timeZone:"Asia/Dubai"},o));
+  // ---- small talk and everyday questions ----
+  const SMALL=[
+    {r:/(?:\b(?:my name is|my name's|i am called)|^call me)\s+([a-z][a-z'-]{1,20})\b/,f:m=>{ctx.name=m[1][0].toUpperCase()+m[1].slice(1);return ["Nice to meet you, "+ctx.name+". What brings you here today?",START]}},
+    {r:/^(hi|hii+|hello|hey|heya|hiya|yo|greetings|howdy|namaste|namaskar|hola|good (morning|afternoon|evening|day))( there)?( madhav)?( ai)?$/,f:m=>[(m[2]?"Good "+m[2]:/^namas/.test(m[1])?"Namaste":greetWord())+nm()+(/^namas/.test(m[1])?" 🙏":" 👋")+" Good to have you here. What would you like to know about Madhav?",START]},
+    {r:/\b(salam|assalam|as salam|salaam)\b/,f:()=>["Wa alaikum assalam"+nm()+" 🙏 How can I help you today?",START]},
+    {r:/\b(marhaba|ahlan)\b/,f:()=>["Marhaba"+nm()+"! Welcome. What would you like to know?",START]},
+    {r:/\b(k cha|ke cha|kasto cha|kasto chha|sanchai)\b/,f:()=>["Sanchai chu, dhanyabad 🙏 Tapai lai kasto cha? (I'm well, thank you. How are you?)",START]},
+    {r:/\b(how are you|how r u|how are u|how's it going|hows it going|how is it going|how are things|how do you do|what's up|whats up|wassup|how have you been)\b/,f:()=>{ctx.pending="mood";return ["I'm doing well, thank you for asking. Calm, curious and ready to help. How about you?",[]]}},
+    {r:/\b(who are you|what are you|are you (a )?(bot|robot|real|human|ai)|are you madhav|is this madhav|am i talking to)\b/,f:()=>["I'm <b>Madhav AI</b>, a digital guide built into Madhav's website. I'm not Madhav himself, but I know his work well. For anything personal, the human Madhav is one message away.",[H,"Who is Madhav?"]]},
+    {r:/\b(your name|what should i call you)\b/,f:()=>["I'm Madhav AI. Short, simple, and easy to remember.",START]},
+    {r:/\b(who (made|built|created|designed) you|how do you work|how were you made)\b/,f:()=>["Madhav designed me as part of his portfolio. I run right here in your browser and answer from what I know about his work and about marketing.",START]},
+    {r:/\b(what time|time is it|current time|time in dubai|time now)\b/,f:()=>["It's <b>"+dubai({hour:"numeric",minute:"2-digit"})+"</b> in Dubai right now, where Madhav is based.",[H]]},
+    {r:/\b(what day|what date|today's date|todays date|what is the date)\b/,f:()=>["Today is <b>"+dubai({weekday:"long",day:"numeric",month:"long",year:"numeric"})+"</b> in Dubai.",START]},
+    {r:/\b(weather|temperature|raining|hot outside)\b/,f:()=>["I can't check live weather, but Dubai is usually sunny ☀️. A weather app will give you the exact forecast.",START]},
+    {r:/\b(you('re| are) (smart|great|awesome|cool|helpful|amazing|nice|good)|good bot|love (you|this|it)|(nice|great|beautiful|amazing|cool|lovely) (website|site|portfolio|design)|love the (site|website|design))\b/,f:()=>["That's kind of you, thank you"+nm()+". I'll make sure Madhav hears it.",[H,"Show me results"]]},
+    {r:/\b(stupid|dumb|useless|idiot|shut up|hate you|fuck|shit|wtf|bullshit|sucks)\b/,f:()=>["Fair enough, I'm still learning. Tell me what you were looking for and I'll do my best, or I can connect you with Madhav directly.",[H,"Who is Madhav?"]]},
+    {r:/\b(this is|that's|thats|it's|its|that is) (great|good|awesome|cool|nice|amazing|helpful|interesting|useful|impressive)\b/,f:()=>["Glad it's helpful"+nm()+". What else would you like to explore?",START]},
+    {r:/\b(i'm bored|i am bored|bored)\b/,f:()=>["Then you're in a good place. Ask me how Madhav took a fashion brand to 4.8x ROAS, or about his seven months at Isha Foundation.",["Show me results","The spiritual side"]]},
+    {r:/\b(meaning of life|purpose of life|how to be happy|happiness|what is life|inner peace)\b/,f:()=>["A big question. Madhav's favourite thinkers would say the point isn't to arrive somewhere, but to be fully present on the way. Alan Watts compared life to music: we don't play it just to reach the final note.",["The spiritual side","What inspires him?"]]},
+    {r:/\b(joke|make me laugh|something funny)\b/,f:()=>["Here's a gentle one: a marketer walked into a bar, then retargeted everyone who didn't buy a drink. 🙂",START.slice(0,3)]},
+    {r:/\b(hiring|job opening|vacanc|internship|intern|work for (him|you)|join (his|your) team|apply for)\b/,f:()=>["Madhav doesn't list open roles here, but he's always glad to hear from talented people. Share a short note about yourself and he'll get back to you.",[H]]},
+    {r:/\b(podcast|speaker|speaking|interview|panel|mentor|mentorship|workshop|guest)\b/,f:()=>["He's open to conversations about marketing, AI and mindful leadership. The best way is a short note with the details, and he'll reply personally.",[H]]},
+    {r:/\b(linkedin|instagram|facebook|social media profile|socials)\b/,f:()=>['You can find him on <a href="https://www.linkedin.com/in/madhav-bhattarai811/" target="_blank" rel="noopener">LinkedIn</a> and <a href="https://www.instagram.com/_madhav_bhattarai/" target="_blank" rel="noopener">Instagram</a>. LinkedIn is the best place for professional conversations.',[H]]},
+    {r:/\b(email address|his email|phone|whatsapp|mobile number|contact number)\b/,f:()=>["You can email him at <b>hello@madhavbhattarai.com</b>, or leave a message right here and he'll reply within a day.",[H]]},
+    {r:/\b(politic|election|religion|war|government)\b/,f:()=>["That's a topic I'll leave to the experts. I'm here for Madhav's work, marketing and growth. Is there something along those lines I can help with?",START.slice(0,3)]},
+    {r:/\b(news|score|match|football|cricket|stock price|bitcoin price)\b/,f:()=>["I don't have live information like news, scores or prices. A quick search will serve you better there. Anything about Madhav or marketing I can help with?",START.slice(0,3)]},
+    {r:/\b(thank|thanks|thx|thank u|appreciate)\b/,f:()=>[pick(["You're welcome"+nm()+". Anything else you'd like to know?","My pleasure. Is there anything else I can help with?"]),[H,"Show me results"]]},
+    {r:/\b(bye|goodbye|see you|see ya|good night|take care|cya|that's all|thats all)\b/,f:()=>["Thank you for visiting"+nm()+". Wishing you clarity and growth. 🙏",[]]}
+  ];
+  function calc(t){const m=t.replace(/^(what is|what's|whats|calculate|calc|compute|solve)\s+/,"").replace(/\?$/,"").replace(/[x×]/g,"*").replace(/÷/g,"/").replace(/\^/g,"**").replace(/\s/g,"");
+    if(!/^[\d.+\-*/()%]+$/.test(m)||!/\d[+\-*/%]/.test(m))return null;try{const v=Function('"use strict";return ('+m+')')();if(typeof v==="number"&&isFinite(v))return +v.toFixed(6)}catch(_){}return null}
+  const QWORD=/^(what|what's|whats|who|whom|when|where|why|how|which|is|are|can|could|do|does|did|should|would|will|tell me|explain|define)\b/;
+  function respond(raw){
+    let t=norm(raw);if(!t)return ["🙂",START];
+    let pre="";const g=t.match(/^(hi|hello|hey|hiya|namaste|good (morning|afternoon|evening))\b[ ,!.]*/);
+    if(g&&t.length>g[0].length+2){pre=greetWord()+nm()+"! ";t=t.slice(g[0].length).trim()}
+    const toks=t.replace(/[?.]/g,"").split(" ");
+    // pending follow-ups
+    if(ctx.pending==="mood"){ctx.pending=null;
+      if(/\b(not good|bad|sad|tired|stressed|exhausted|meh|not great|awful|terrible)\b/.test(t))return ["Sorry to hear that. A slow breath helps more than most people expect. Whenever you're ready, I'm here.",START];
+      if(/\b(good|great|fine|well|ok|okay|alright|not bad|awesome|amazing|doing well)\b/.test(t))return ["Glad to hear it"+nm()+". What would you like to explore today?",START]}
+    if(ctx.pending==="contact"){ctx.pending=null;if(/^(yes|yeah|yep|sure|ok|okay|please|yes please|y)\b/.test(t))return "HUMAN";if(/^(no|nope|nah|not now|later)\b/.test(t))return ["No problem. I'm here if you need anything else.",START]}
+    if(/^(tell me more|more|go on|continue|elaborate|more details|and|what else|anything else|keep going)\??$/.test(t)){
+      if(ctx.last&&ctx.last.m){const it=ctx.last;ctx.last=null;return [pre+it.m,it.c]}
+      return [pre+"Happy to. Here are a few directions we could take:",START]}
+    const v=calc(t);if(v!==null)return [pre+t.replace(/^(what is|what's|whats|calculate|calc|compute|solve)\s+/,"").replace(/\?$/,"")+" = <b>"+v+"</b>",START.slice(0,3)];
+    for(const sm of SMALL){const m=t.match(sm.r);if(m){const r=sm.f(m);return [pre+r[0],r[1]]}}
+    if(/^(ok|okay|k|cool|nice|great|got it|alright|hmm+|i see|sure|fine|interesting|wow|oh|ah|yes|no|yeah|nope)[.! ]*$/.test(t))return [pre+pick(["Great. What else would you like to know?","Sure. Where would you like to go next?"]),START];
+    const asksDef=/\b(what is|what's|whats|what are|define|meaning of|explain|how (do|does|to|can|should)|difference between|tips|should i|best way|why is|why does)\b/.test(t);
+    const [kb,ks]=score(KB,t,toks),[it,is]=score(K,t,toks);
+    const useKB=kb&&(asksDef?ks>=is-1:ks>is);
+    if(useKB){ctx.misses=0;return [pre+kb.a,["How can he help my brand?",H]]}
+    if(it){ctx.misses=0;if(it.human)return "HUMAN";ctx.last=it;return [pre+it.a,it.c]}
+    if(kb){ctx.misses=0;return [pre+kb.a,["How can he help my brand?",H]]}
+    ctx.misses++;
+    if(ctx.misses>=2){ctx.pending="contact";return [pre+"I may not be the best one to answer that. Would you like me to pass your question to Madhav directly?",["Yes, contact Madhav",...START.slice(0,2)]]}
+    if(QWORD.test(t)||/\?$/.test(raw.trim()))return [pre+"That's a little outside my world. I'm built to talk about Madhav, marketing and growth, so for general questions a search engine or a general AI assistant will serve you better. Is there something about growing a brand I can help with?",["How can he help my brand?","What is ROAS?",H]];
+    return [pre+"I'm not sure I followed that. Could you put it another way? You can ask about Madhav's work, results, ventures or any marketing question.",START.slice(0,4)];
+  }
   let opened=false,greeted=false,busy=false;
   const scroll=()=>{log.scrollTop=log.scrollHeight};
   function add(html,who,cls){const m=document.createElement("div");m.className="msg "+who+(cls?" "+cls:"");if(who==="u")m.textContent=html;else m.innerHTML=html;log.appendChild(m);scroll();return m}
@@ -1783,12 +1904,8 @@ document.addEventListener("submit",async e=>{
     const plain=html.replace(/<[^>]+>/g,"");setTimeout(()=>{t.remove();add(html,"b");chips(next);busy=false;cb&&cb()},RMQ?80:Math.min(1400,450+plain.length*6))}
   function human(){chips([]);botSay("Please leave your details and Madhav will reply <b>within 1 day</b>, unless it's a weekend or he's meditating in the Himalayas.",[],()=>{
     const m=add("","b","card");m.appendChild(document.getElementById("cf-tpl").content.cloneNode(true));setTimeout(()=>{const n=m.querySelector("input[name=name]");n&&FINEQ&&n.focus()},200);scroll()})}
-  function answer(q){const t=" "+q.toLowerCase()+" ";let best=null,sc=0;
-    K.forEach(it=>{let s=0;it.k.forEach(w=>{if(w.length<=3?new RegExp("\\b"+w+"\\b").test(t):t.includes(w))s+=w.length>4?2:1});if(s>sc){sc=s;best=it}});
-    if(!best)return botSay("I don't have an answer for that yet. I can tell you about Madhav's work, results, ventures, AI projects and background, or you can contact him directly.",[H,"How can he help my brand?","Show me results"]);
-    if(best.human)return human();
-    botSay(best.a,best.c)}
-  function ask(q){if(busy)return;add(q,"u");chips([]);if(q===H)return human();answer(q)}
+  function answer(q){const r=respond(q);if(r==="HUMAN")return human();botSay(r[0],r[1])}
+  function ask(q){if(busy)return;add(q,"u");chips([]);if(q===H||q==="Yes, contact Madhav")return human();answer(q)}
   function open(){panel.hidden=false;panel.classList.remove("closing");fab.classList.add("open");fab.setAttribute("aria-expanded","true");hint.classList.remove("on");opened=true;
     if(!greeted){greeted=true;botSay("Hi there 👋 I'm <b>Madhav AI</b>, your shortcut to Madhav's story. Curious about his work, the results, or what keeps him grounded? Ask away, or pick a topic below.",START)}
     if(FINEQ)setTimeout(()=>inp.focus(),300)}
