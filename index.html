@@ -996,9 +996,9 @@ section[id],div[id="isha"]{scroll-margin-top:64px}
       <article class="stop" data-year="2018" data-place="Kathmandu · Nepal" style="--c:#4fb286">
         <div class="st-node"></div><div class="st-stem"></div>
         <div class="st-card"><div class="st-top"><span class="st-ic"><svg><use href="#i-lotus"/></svg></span><span class="st-yr">2018–2021</span><span class="st-cc">NP</span></div>
-          <h3>Nepal Yoga Institute</h3><p class="st-role">Sr. Business Development & Digital Marketing</p><p class="st-line">First real marketing role.</p>
+          <h3>Nepal Yoga Institute</h3><p class="st-role">Business Development Manager & Yoga Instructor</p><p class="st-line">First real marketing role.</p>
           <button class="more-btn" data-more="j1">Details <span class="pl">+</span></button></div>
-        <template id="j1"><p class="k">2018–2021 · Budanilkantha, Kathmandu</p><h3>Nepal Yoga Institute</h3><p class="sub">Sr. Business Development & Digital Marketing</p><p>Built the digital presence for an ancient wellness brand: Facebook Ads, Google Ads, SEO and team leadership. The early lesson: authentic storytelling always outperforms manufactured campaigns.</p><div class="tags"><span>Facebook Ads</span><span>Google Ads</span><span>SEO</span><span>Team Leadership</span></div></template>
+        <template id="j1"><p class="k">2018–2021 · Budanilkantha, Kathmandu</p><h3>Nepal Yoga Institute</h3><p class="sub">Business Development Manager & Yoga Instructor</p><p>Built the digital presence for an ancient wellness brand: Facebook Ads, Google Ads, SEO and team leadership. The early lesson: authentic storytelling always outperforms manufactured campaigns.</p><div class="tags"><span>Facebook Ads</span><span>Google Ads</span><span>SEO</span><span>Team Leadership</span></div></template>
       </article>
 
       <article class="stop" data-year="2020" data-place="Kathmandu · Nepal" style="--c:#c9a84c">
@@ -1756,7 +1756,7 @@ document.addEventListener("submit",async e=>{
   const H="Talk to human Madhav";
   const START=["Who is Madhav?","How can he help my brand?","Show me results","His ventures","The spiritual side",H];
   const K=[
-    {k:["hi","hello","hey","namaste","salam","hola","yo","good morning","good evening"],a:"Namaste 🙏 I'm Madhav AI. Ask me about Madhav's work, results, ventures or approach.",c:START},
+    {k:["hi","hello","hey","namaste","salam","hola","yo","good morning","good evening"],a:"Namaste 🙏 Good to have you here. What would you like to know about Madhav?",c:START},
     {k:["who","yourself","introduce","background","about him","who is"],a:"Madhav is a <b>Senior Performance Marketing Manager in Dubai</b>. He's a Computer Science graduate with 7+ years across 8 countries, <b>$10M+ in ad spend</b> managed and 60+ clients.<br><br>He helps businesses grow from the ground up to scale, with a perspective shaped by work across many industries.",c:["How can he help my brand?","His career journey","The spiritual side"]},
     {k:["help","service","offer","do for","hire","work with","brand","agency","consult","what can","growth","marketing"],a:"He helps brands grow revenue, not vanity metrics:<ul><li><b>Paid media</b> across Google, Meta, TikTok, LinkedIn, Snapchat and DV360</li><li><b>Measurement you can trust</b> with GA4, GTM and Looker Studio</li><li><b>AI automation</b> for reporting and optimisation</li></ul>The rhythm is simple: audit, strategy, launch & test, then scale.",c:["Show me results","Which industries?",H]},
     {k:["result","case","roas","number","proof","impact","performance","cpa","cpl","leads"],a:"A few highlights:<ul><li>Luxury fashion DTC: <b>4.8x ROAS</b>, −52% CPA</li><li>GCC real estate: <b>+290% enquiries</b>, 4.2x ROAS</li><li>B2B SaaS: <b>+180% leads</b>, −65% CPL</li><li>Mobility app: <b>2.8M installs</b></li><li>Beauty brand: <b>5.2x IG ROAS</b></li></ul><a class=\"act\" href=\"#cases\" data-go>See all case studies →</a>",c:["How can he help my brand?",H]},
@@ -1790,7 +1790,7 @@ document.addEventListener("submit",async e=>{
     botSay(best.a,best.c)}
   function ask(q){if(busy)return;add(q,"u");chips([]);if(q===H)return human();answer(q)}
   function open(){panel.hidden=false;panel.classList.remove("closing");fab.classList.add("open");fab.setAttribute("aria-expanded","true");hint.classList.remove("on");opened=true;
-    if(!greeted){greeted=true;botSay("Hi, I'm <b>Madhav AI</b>. I can tell you about Madhav's work, results, ventures and approach. Ask a question or choose a topic below.",START)}
+    if(!greeted){greeted=true;botSay("Hi there 👋 I'm <b>Madhav AI</b>, your shortcut to Madhav's story. Curious about his work, the results, or what keeps him grounded? Ask away, or pick a topic below.",START)}
     if(FINEQ)setTimeout(()=>inp.focus(),300)}
   function close(){panel.classList.add("closing");setTimeout(()=>{panel.hidden=true;panel.classList.remove("closing")},280);fab.classList.remove("open");fab.setAttribute("aria-expanded","false");fab.focus({preventScroll:true})}
   fab.addEventListener("click",open);
@@ -1815,18 +1815,22 @@ document.querySelectorAll(".marq-track").forEach(t=>{t.innerHTML+=t.innerHTML;[.
   Object.keys(map).forEach(id=>{const el=document.getElementById(id);el&&spy.observe(el)});
 })();
 
-// ===== MAGNETIC BUTTONS + CARD SPOTLIGHT/TILT =====
+// ===== MAGNETIC BUTTONS + CARD SPOTLIGHT/TILT (eased every frame) =====
 if(FINEQ&&!RMQ){
-  document.querySelectorAll(".mag").forEach(b=>{
-    b.addEventListener("mousemove",e=>{const r=b.getBoundingClientRect();b.style.transform="translate("+((e.clientX-r.left-r.width/2)*.22)+"px,"+((e.clientY-r.top-r.height/2)*.35)+"px)";b.style.transition="transform .1s"});
-    b.addEventListener("mouseleave",()=>{b.style.transform="";b.style.transition="transform .5s cubic-bezier(.2,.8,.2,1)"});
-  });
-  document.querySelectorAll(".spot").forEach(c=>{
-    c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");
-      c.style.transform="perspective(900px) rotateX("+(-y*3)+"deg) rotateY("+(x*3)+"deg)";c.style.transition="transform .08s, border-color .4s"});
-    c.addEventListener("mouseleave",()=>{c.style.transform="";c.style.transition="transform .6s cubic-bezier(.2,.8,.2,1), border-color .4s"});
-  });
+  function follow(el,apply,ease){let cx=0,cy=0,tx=0,ty=0,raf=0,rect=null,on=false;
+    const tick=()=>{cx+=(tx-cx)*ease;cy+=(ty-cy)*ease;
+      if(!on&&Math.abs(cx)<.002&&Math.abs(cy)<.002){raf=0;el.style.transform="";el.style.willChange="";el.style.transition="";return}
+      apply(cx,cy);raf=requestAnimationFrame(tick)};
+    const go=()=>{if(!raf)raf=requestAnimationFrame(tick)};
+    el.addEventListener("mouseenter",()=>{on=true;rect=el.getBoundingClientRect();el.style.willChange="transform";el.style.transition="border-color .4s, box-shadow .4s, opacity .45s, background .4s"});
+    el.addEventListener("mousemove",e=>{if(!rect)rect=el.getBoundingClientRect();tx=(e.clientX-rect.left)/rect.width-.5;ty=(e.clientY-rect.top)/rect.height-.5;
+      if(el.classList.contains("spot")){el.style.setProperty("--mx",(e.clientX-rect.left)+"px");el.style.setProperty("--my",(e.clientY-rect.top)+"px")}go()});
+    el.addEventListener("mouseleave",()=>{on=false;tx=0;ty=0;rect=null;go()});
+    addEventListener("scroll",()=>{if(on)rect=null},{passive:true});
+  }
+  document.querySelectorAll(".mag").forEach(b=>{const w=b.offsetWidth,h=b.offsetHeight;
+    follow(b,(x,y)=>{b.style.transform="translate3d("+(x*b.offsetWidth*.22)+"px,"+(y*b.offsetHeight*.35)+"px,0)"},.18)});
+  document.querySelectorAll(".spot").forEach(c=>follow(c,(x,y)=>{c.style.transform="perspective(900px) rotateX("+(-y*3).toFixed(3)+"deg) rotateY("+(x*3).toFixed(3)+"deg)"},.12));
 }
 
 // ===== MANDALA =====
