@@ -1,0 +1,3 @@
+# Keep project notes out of the published site.
+exclude:
+  - CLAUDE.md
